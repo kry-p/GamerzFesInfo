@@ -65,7 +65,7 @@ async function crawl(pages) {
         game.applicant = txt;
         break;
       case 3:
-        game.date = txt;
+        game.date = stringToDate(txt);
         break;
       case 4:
         game.rating = txt;
@@ -75,6 +75,17 @@ async function crawl(pages) {
         break;
       default:
         break;
+    }
+  };
+
+  const stringToDate = (string) => {
+    try {
+      const dateString = string.split('-');
+      const date = new Date(dateString[0], dateString[1] - 1, dateString[2]);
+
+      return date;
+    } catch (e) {
+      return null;
     }
   };
 
@@ -197,7 +208,9 @@ async function getData(startdate, enddate) {
 }
 
 // 활용예 (Promise 형태로 받아야 함)
-(async () => {
-  const res = await getData('2021-01-01', '2021-02-07');
-  console.log(res);
-})();
+// (async () => {
+//   const res = await getData('2021-01-01', '2021-02-07');
+//   console.log(res);
+// })();
+
+export default getData;
