@@ -39,8 +39,6 @@ export const getCurrentDate = (date) => {
       );
     });
 
-    bulkResult.forEach((bulk) => console.log(bulk.updateOne.update.$set.date));
-
     // 일괄 삽입
     Review.bulkWrite(bulkResult);
   })();
@@ -63,8 +61,6 @@ export default function getReviewData(startDate, endDate) {
         ),
       );
     });
-
-    bulkResult.forEach((bulk) => console.log(bulk.updateOne.update.$set.date));
 
     // 일괄 삽입
     Review.bulkWrite(bulkResult);
