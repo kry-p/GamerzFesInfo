@@ -6,6 +6,7 @@ import bodyParser from 'koa-bodyparser';
 import mongoose from 'mongoose';
 
 import api from './api';
+import getReviewData from './modules/getReviewData';
 
 const app = new Koa();
 const router = new Router();
@@ -17,6 +18,7 @@ mongoose
   .connect(MONGO_URI, { useNewUrlParser: true, useFindAndModify: false })
   .then(() => {
     console.log('Connected to MongoDB');
+    getReviewData(new Date(2021, 2 - 1, 1), new Date(2021, 2 - 1, 15));
   })
   .catch((e) => {
     console.error(e);

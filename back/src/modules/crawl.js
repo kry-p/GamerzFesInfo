@@ -65,7 +65,7 @@ async function crawl(pages) {
         game.applicant = txt;
         break;
       case 3:
-        game.date = stringToDate(txt);
+        game.date = txt;
         break;
       case 4:
         game.rating = txt;
@@ -78,16 +78,16 @@ async function crawl(pages) {
     }
   };
 
-  const stringToDate = (string) => {
-    try {
-      const dateString = string.split('-');
-      const date = new Date(dateString[0], dateString[1] - 1, dateString[2]);
+  // const stringToDate = (string) => {
+  //   try {
+  //     const dateString = string.split('-');
+  //     const date = new Date(dateString[0], dateString[1] - 1, dateString[2]);
 
-      return date;
-    } catch (e) {
-      return null;
-    }
-  };
+  //     return date;
+  //   } catch (e) {
+  //     return null;
+  //   }
+  // };
 
   // 입력받은 페이지 크롤링
   const crawler = async (page) => {
@@ -196,8 +196,31 @@ async function crawl(pages) {
 // 정상 수행될 경우 JSON 타입 데이터가 포함된 배열을 반환
 // 쿼리에 오류가 있을 경우 null을 반환
 async function getData(startdate, enddate) {
-  params.startdate = startdate;
-  params.enddate = enddate;
+  // Date 타입을 yyyy-mm-dd 형태로 변환 (쿼리에 삽입 가능한 형태)
+  const dateToString = (date) => {
+    try {
+      let { year, month, day } = {
+        year: date.getFullYear(),
+        month: '' + (date.getMonth() + 1),
+        day: '' + date.getDate(),
+      };
+
+      if (month.length < 2) month = '0' + month;
+      if (day.length < 2) day = '0' + day;
+
+      const result = `${year}-${month}-${day}`;
+
+      return result;
+    } catch (e) {
+      return null;
+    }
+  };
+
+  params.startdate = dateToString(startdate);
+  params.enddate = dateToString(enddate);
+
+  // 날짜가 잘못되면 종료
+  if (params.startdate === null || params.enddate === null) return null;
 
   const url = baseUrl + createQueryParams(params);
   const pages = await getPageCount(url);
@@ -209,7 +232,10 @@ async function getData(startdate, enddate) {
 
 // 활용예 (Promise 형태로 받아야 함)
 // (async () => {
-//   const res = await getData('2021-01-01', '2021-02-07');
+//   const res = await getData(
+//     new Date(2020, 2 - 1, 3),
+//     new Date(2020, 2 - 1, 15),
+//   );
 //   console.log(res);
 // })();
 

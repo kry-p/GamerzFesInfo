@@ -4,13 +4,20 @@ import Review from '../../models/review';
     오늘의 심의결과 조회
     GET /api/review/gettoday
 */
-export const getToday = (ctx) => {};
+export const getToday = async (ctx) => {};
 
 /*
     전체 심의결과 조회
     GET /api/review/getall
 */
-export const getAll = (ctx) => {};
+export const getAll = async (ctx) => {
+  try {
+    const review = await Review.find().exec();
+    ctx.body = review;
+  } catch (error) {
+    ctx.throw(500, error);
+  }
+};
 
 /*
     
