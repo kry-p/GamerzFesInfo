@@ -1,6 +1,8 @@
 // 확인 결과 URL + 쿼리만으로 원하는 페이지를 띄울 수 있음
 import webdriver, { By, until } from 'selenium-webdriver';
+import { dateToString } from './date';
 import chrome from 'selenium-webdriver/chrome';
+import logger from './winston';
 
 const driver = new webdriver.Builder()
   .forBrowser('chrome')
@@ -78,17 +80,6 @@ async function crawl(pages) {
     }
   };
 
-  // const stringToDate = (string) => {
-  //   try {
-  //     const dateString = string.split('-');
-  //     const date = new Date(dateString[0], dateString[1] - 1, dateString[2]);
-
-  //     return date;
-  //   } catch (e) {
-  //     return null;
-  //   }
-  // };
-
   // 입력받은 페이지 크롤링
   const crawler = async (page) => {
     params.pageindex = page; // 쿼리문에 페이지를 지정
@@ -146,7 +137,9 @@ async function crawl(pages) {
                         })
                         .catch(() => {
                           pushIntoResult(td, null); // 오류 발생 시 null 삽입
-                          console.log('E: 찾는 이미지 엘리먼트가 없습니다.');
+                          logger.error(
+                            'Crawler: No corresponding image element found.',
+                          );
                         });
                     } else {
                       driver
@@ -174,7 +167,7 @@ async function crawl(pages) {
                 }
               })
               .catch(() => {
-                console.log('E: 찾는 테이블 엘리먼트가 없습니다.');
+                logger.error('Crawler: No corresponding table element found.');
               });
           })();
         });
@@ -194,28 +187,8 @@ async function crawl(pages) {
 
 // process
 // 정상 수행될 경우 JSON 타입 데이터가 포함된 배열을 반환
-// 쿼리에 오류가 있을 경우 null을 반환
+// 결과물이 없거나 쿼리에 오류가 있을 경우 null을 반환
 async function getData(startdate, enddate) {
-  // Date 타입을 yyyy-mm-dd 형태로 변환 (쿼리에 삽입 가능한 형태)
-  const dateToString = (date) => {
-    try {
-      let { year, month, day } = {
-        year: date.getFullYear(),
-        month: '' + (date.getMonth() + 1),
-        day: '' + date.getDate(),
-      };
-
-      if (month.length < 2) month = '0' + month;
-      if (day.length < 2) day = '0' + day;
-
-      const result = `${year}-${month}-${day}`;
-
-      return result;
-    } catch (e) {
-      return null;
-    }
-  };
-
   params.startdate = dateToString(startdate);
   params.enddate = dateToString(enddate);
 
