@@ -6,7 +6,7 @@ import logger from './winston';
 
 const driver = new webdriver.Builder()
   .forBrowser('chrome')
-  .setChromeOptions(new chrome.Options().headless())
+  // .setChromeOptions(new chrome.Options().headless())
   .build();
 
 const baseUrl = 'https://www.grac.or.kr/Statistics/GameStatistics.aspx?';

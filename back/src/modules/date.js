@@ -27,6 +27,8 @@ export const stringToDate = (string) => {
     const dateString = string.split('-');
     const date = new Date(dateString[0], dateString[1] - 1, dateString[2]);
 
+    if (dateString.length !== 3) return null;
+
     return date;
   } catch (e) {
     return null;
