@@ -4,9 +4,9 @@
 
 import mongoose from 'mongoose';
 import logger from '../modules/winston';
-import { stringToDate } from '../modules/date';
+import { dateToString } from '../modules/date';
 
-import getReviewData from '../modules/crawl';
+import getReviewData from '../modules/review';
 
 require('dotenv').config();
 
@@ -16,7 +16,11 @@ export default async function batch(startDate, endDate) {
   // connect to mongodb
 
   logger.info('Crawler: Batch crawling process begins...');
-  logger.info(`Crawler: Starts at ${startDate}, ends at ${endDate}`);
+  logger.info(
+    `Crawler: Starts at ${dateToString(startDate)}, ends at ${dateToString(
+      endDate,
+    )}`,
+  );
 
   await mongoose
     .connect(MONGO_URI, { useNewUrlParser: true, useFindAndModify: false })
@@ -27,5 +31,5 @@ export default async function batch(startDate, endDate) {
       logger.error(e);
     });
 
-  await getReviewData(stringToDate(startDate), stringToDate(endDate));
+  await getReviewData(startDate, endDate);
 }
