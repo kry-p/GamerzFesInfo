@@ -1,7 +1,14 @@
 import React from 'react';
+import Card from '../components/common/Card';
+import Header from '../components/common/Header';
 
 const MainPage = () => {
-  return <div>여기에 메인 화면</div>;
+  return (
+    <>
+      <Header />
+      <Card>text</Card>
+    </>
+  );
 };
 
 export default MainPage;
