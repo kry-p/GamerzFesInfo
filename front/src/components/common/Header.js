@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import Responsive from './Responsive';
-import Button from './Button';
+import Responsive from './Responsive.js';
+import Button from './Button.js.bak';
 import palette from '../../lib/styles/palette';
-import { AiOutlineMenu } from 'react-icons/ai';
+import { AiOutlineMenu, AiFillBell } from 'react-icons/ai';
+import Card from './Card.js.bak';
 
 const HeaderBlock = styled.div`
   position: fixed;
@@ -13,10 +14,10 @@ const HeaderBlock = styled.div`
 `;
 
 const Wrapper = styled(Responsive)`
-  height: 4rem;
-  display: flex;
+  /* height: 4rem; */
+  flex: 1;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 
   .logo {
     font-size: 1.125rem;
@@ -38,7 +39,22 @@ const Spacer = styled.div`
 const Header = () => {
   return (
     <>
-      <HeaderBlock>
+      <Card className="header">
+        <Wrapper>
+          <div className="left">
+            <Button icon>
+              <AiFillBell color={`${palette.teal[5]}`} />
+            </Button>
+          </div>
+          <div className="logo">실시간 심의정보</div>
+          <div className="right">
+            <Button icon>
+              <AiOutlineMenu color={`${palette.teal[5]}`} />
+            </Button>
+          </div>
+        </Wrapper>
+      </Card>
+      {/* <HeaderBlock>
         <Wrapper>
           <div className="left">
             <Button teal></Button>
@@ -50,8 +66,7 @@ const Header = () => {
             </Button>
           </div>
         </Wrapper>
-      </HeaderBlock>
-      <Spacer />
+      </HeaderBlock> */}
     </>
   );
 };

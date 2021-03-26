@@ -2,10 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 const ResponsiveBlock = styled.div`
-  padding-left: 1rem;
-  padding-right: 1rem;
-  width: 1024px;
-  margin: 0 auto;
+  /* padding-left: 1rem; */
+  /* padding-right: 1rem; */
+  /* width: 1024px; */
+  /* margin: 0 auto; */
+  display: flex;
+
+  &,
+  & * {
+    box-sizing: border-box;
+  }
 
   @media (max-width: 1024px) {
     width: 768px;

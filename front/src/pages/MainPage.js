@@ -1,12 +1,18 @@
 import React from 'react';
-import Card from '../components/common/Card';
-import Header from '../components/common/Header';
+import { Layout } from 'antd';
+
+import 'antd/dist/antd.css';
+import Tab from '../components/common/Tab';
+
+const { Footer } = Layout;
 
 const MainPage = () => {
   return (
     <>
-      <Header />
-      <Card>text</Card>
+      <Tab />
+      <Layout>
+        <Footer style={{ textAlign: 'center' }}>author</Footer>
+      </Layout>
     </>
   );
 };
