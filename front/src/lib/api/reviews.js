@@ -9,5 +9,5 @@ import client from './client';
 // };
 
 export const list = () => {
-  return client.get(`/api/review/list`);
+  return client.get('/api/review/list');
 };
