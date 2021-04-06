@@ -1,40 +1,53 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import palette from '../../lib/styles/palette';
 
 const CardStyle = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 12px;
-  margin: 12px;
+  padding: 8px;
+  margin: 8px;
   border-radius: 12px;
   box-sizing: border-box;
-  box-shadow: 0 5px 5px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);
 
   ${(props) =>
-    props.half &&
+    props.mainColor &&
     css`
-      width: 50%;
-      float: left;
+      background-color: ${palette.logo_base[0]};
     `}
 
   ${(props) =>
-    props.full &&
+    props.subColor &&
     css`
-      width: 100%;
-      float: left;
+      background-color: ${palette.logo_base[1]};
     `}
 
-  .header {
-    @media (max-width: 1024px) {
-      width: 512px;
-    }
+  ${(props) =>
+    props.small &&
+    css`
+      @media (max-width: 512px) {
+        width: 80%;
+      }
 
-    @media (max-width: 768px) {
-      width: 512px;
-    }
-  }
+      @media (min-width: 512px) {
+        width: 448px;
+      }
+    `}
+
+    ${(props) =>
+    props.big &&
+    css`
+      @media (max-width: 512px) {
+        width: 100%;
+      }
+
+      @media (min-width: 512px) {
+        width: 512px;
+      }
+    `}
 `;
 
 const Card = (props) => {

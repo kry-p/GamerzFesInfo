@@ -24,6 +24,7 @@ const palette = {
     '#099268',
     '#087f5b',
   ],
+  logo_base: ['#6ac1b8', '#e1f6f4', '#f0fbfa'],
 };
 
 export default palette;

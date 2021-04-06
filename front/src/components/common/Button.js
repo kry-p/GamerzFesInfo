@@ -40,6 +40,9 @@ const buttonStyle = css`
     props.icon &&
     css`
       background: rgba(0, 0, 0, 0);
+      margin-top: 0.25rem;
+      padding: 0rem;
+      color: ${palette.gray[5]};
       &:hover {
         background: rgba(0, 0, 0, 0);
       }

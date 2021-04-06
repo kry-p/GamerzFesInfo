@@ -1,19 +1,26 @@
 import React from 'react';
-import { Layout } from 'antd';
+import styled from 'styled-components';
 
 import 'antd/dist/antd.css';
-import Tab from '../components/common/Tab';
+import Header from '../components/Header';
+import ReviewInfo from '../components/ReviewInfo';
+import Footer from '../components/Footer';
 
-const { Footer } = Layout;
+const MainStyle = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+`;
 
 const MainPage = () => {
   return (
-    <>
-      <Tab />
-      <Layout>
-        <Footer style={{ textAlign: 'center' }}>author</Footer>
-      </Layout>
-    </>
+    <MainStyle>
+      <Header />
+      <ReviewInfo />
+      <Footer />
+    </MainStyle>
   );
 };
 

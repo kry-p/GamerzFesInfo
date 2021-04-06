@@ -13,12 +13,12 @@ const ResponsiveBlock = styled.div`
     box-sizing: border-box;
   }
 
-  @media (max-width: 1024px) {
-    width: 768px;
-  }
-
   @media (max-width: 768px) {
     width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    width: 768px;
   }
 `;
 
