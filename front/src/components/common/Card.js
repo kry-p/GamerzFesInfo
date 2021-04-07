@@ -7,8 +7,9 @@ const CardStyle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px;
+  padding: 10px;
   margin: 8px;
+  margin-bottom: 12px;
   border-radius: 12px;
   box-sizing: border-box;
   box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);

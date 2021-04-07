@@ -1,25 +1,26 @@
 import React, { useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { listReviews } from '../../modules/reviews';
+import { listReview } from '../../modules/review';
 import ReviewTable from '../../components/table/ReviewTable';
+import { dateToString } from '../../modules/date';
 
-const ReviewListContainer = ({ match }) => {
+const ReviewListContainer = () => {
   //   const { startdate, enddate } = match.params;
   const dispatch = useDispatch();
-  const { reviews, error, loading } = useSelector(({ reviews, loading }) => ({
-    reviews: reviews.reviews,
-    error: reviews.error,
-    loading: loading['reviews/LIST_REVIEWS'],
+  const { review, error, loading } = useSelector(({ review, loading }) => ({
+    review: review.review,
+    error: review.error,
+    loading: loading['review/LIST_REVIEW'],
   }));
 
   useEffect(() => {
     // dispatch(listReviews(startdate, enddate));
-    dispatch(listReviews());
+    dispatch(listReview());
   }, [dispatch]);
   //   }, [dispatch, startdate, enddate]);
 
-  return <ReviewTable reviews={reviews} loading={loading} error={error} />;
+  return <ReviewTable review={review} loading={loading} error={error} />;
 };
 
 export default withRouter(ReviewListContainer);
