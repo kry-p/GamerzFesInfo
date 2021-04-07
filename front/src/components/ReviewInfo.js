@@ -1,16 +1,15 @@
 import React from 'react';
-import Card from './common/Card';
 import styled from 'styled-components';
-import 'antd/dist/antd.css';
-import ReviewListContainer from '../containers/reviews/ReviewListContainer';
-import ReviewTable from './table/ReviewTable';
-import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from './common/Button';
+
 import { dateToString } from '../modules/date';
 
-// import { Table } from 'antd';
+import TextField from '@material-ui/core/TextField';
 
+import Card from './common/Card';
+import ReviewListContainer from '../containers/reviews/ReviewListContainer';
+import Button from './common/Button';
+
+// information css
 const ReviewInfoStyle = styled.div`
   @font-face {
     font-family: 'TmoneyRoundWindRegular';
@@ -28,6 +27,7 @@ const ReviewInfoStyle = styled.div`
   font-size: small;
 `;
 
+// searcg form css
 const FormStyle = styled.div`
   display: grid;
   grid-template-columns: 5fr 5fr 3fr;

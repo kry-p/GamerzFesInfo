@@ -1,7 +1,10 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+
+// color
 import palette from '../../lib/styles/palette';
 
+// card css
 const CardStyle = styled.div`
   position: relative;
   display: flex;

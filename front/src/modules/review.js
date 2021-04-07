@@ -1,3 +1,6 @@
+/*
+ * Review saga
+ */
 import { createAction, handleActions } from 'redux-actions';
 import createRequestSaga, {
   createRequestActionTypes,
@@ -10,11 +13,6 @@ const [
   LIST_REVIEW_SUCCESS,
   LIST_REVIEW_FAILURE,
 ] = createRequestActionTypes('review/LIST_REVIEW');
-
-// export const listReviews = createAction(
-//   LIST_REVIEWS,
-//   ({ startdate, enddate }) => ({ startdate, enddate }),
-// );
 
 export const listReview = createAction(LIST_REVIEW);
 

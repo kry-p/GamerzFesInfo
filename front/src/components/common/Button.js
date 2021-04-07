@@ -1,8 +1,11 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
+
+// color
 import palette from '../../lib/styles/palette';
 
+// button css
 const buttonStyle = css`
   border: none;
   border-radius: 4px;

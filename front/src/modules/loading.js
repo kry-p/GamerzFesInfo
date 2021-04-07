@@ -1,3 +1,8 @@
+/*
+ * API loader saga generator
+ * code by velopert
+ * https://github.com/velopert/
+ */
 import { createAction, handleActions } from 'redux-actions';
 
 const START_LOADING = 'loading/START_LOADING';

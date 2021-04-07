@@ -1,11 +1,14 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+
+import { RiRefreshLine, RiMenuFill } from 'react-icons/ri';
+
 import Card from './common/Card';
 import Responsive from './common/Responsive';
 import palette from '../lib/styles/palette';
-import { RiRefreshLine, RiMenuFill } from 'react-icons/ri';
 import Button from './common/Button';
 
+// items css
 const Logo = styled.div`
   @font-face {
     font-family: 'TmoneyRoundWindExtraBold';

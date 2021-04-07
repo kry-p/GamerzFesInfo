@@ -1,3 +1,8 @@
+/*
+ * Request saga generator
+ * code by velopert
+ * https://github.com/velopert/
+ */
 import { call, put } from 'redux-saga/effects';
 import { startLoading, finishLoading } from '../modules/loading';
 
