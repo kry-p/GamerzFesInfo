@@ -1,15 +1,18 @@
+/*
+ * Root reducer and saga
+ */
 import { combineReducers } from 'redux';
 import { all } from 'redux-saga/effects';
 import loading from './loading';
-import reviews, { reviewsSaga } from './reviews';
+import review, { reviewSaga } from './review';
 
 const rootReducer = combineReducers({
   loading,
-  reviews,
+  review,
 });
 
 export function* rootSaga() {
-  yield all([reviewsSaga()]);
+  yield all([reviewSaga()]);
 }
 
 export default rootReducer;

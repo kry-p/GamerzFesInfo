@@ -1,32 +1,46 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import reportWebVitals from './reportWebVitals';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import rootReducer from './modules';
 
-const theme = createMuiTheme({
-  typography: {
-    fontFamily: 'TmoneyRoundWindRegular',
-    fontSize: 11,
-  },
-  overrides: {
-    MuiTableCell: {
-      root: {
-        //This can be referred from Material UI API documentation.
-        padding: '4px 4px',
-        align: 'center',
+import reportWebVitals from './reportWebVitals';
+
+import './index.css';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { koKR } from '@material-ui/core/locale';
+
+import { Provider } from 'react-redux';
+import { applyMiddleware, createStore } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import rootReducer, { rootSaga } from './modules';
+
+const sagaMiddleware = createSagaMiddleware();
+const theme = createMuiTheme(
+  {
+    typography: {
+      fontFamily: 'TmoneyRoundWindRegular',
+      fontSize: 11,
+    },
+    overrides: {
+      MuiTableCell: {
+        align: 'justify',
+        root: {
+          //This can be referred from Material UI API documentation.
+          padding: '6px 6px',
+        },
       },
     },
   },
-});
+  koKR,
+);
 
-const store = createStore(rootReducer, composeWithDevTools());
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(sagaMiddleware)),
+);
+
+sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
   <Provider store={store}>

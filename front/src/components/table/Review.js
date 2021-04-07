@@ -2,6 +2,7 @@ import React from 'react';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 
+// review table cell
 const Review = (props) => {
   return (
     <TableRow>

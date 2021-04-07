@@ -2,6 +2,7 @@ import React from 'react';
 import Card from './common/Card';
 import styled from 'styled-components';
 
+// footer card css
 const FooterStyle = styled.div`
   @font-face {
     font-family: 'TmoneyRoundWindRegular';

@@ -1,14 +1,18 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+
+// color
 import palette from '../../lib/styles/palette';
 
+// card css
 const CardStyle = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px;
+  padding: 10px;
   margin: 8px;
+  margin-bottom: 12px;
   border-radius: 12px;
   box-sizing: border-box;
   box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);
