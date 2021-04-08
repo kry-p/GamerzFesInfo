@@ -16,15 +16,7 @@ const ReviewItem = ({ review }) => {
 };
 
 // table element
-const ReviewTable = ({ review, loading, error }) => {
-  if (error) {
-    return <>오류 발생</>;
-  }
-
-  if (loading) {
-    return <>로딩중</>;
-  }
-
+const ReviewTable = ({ review, loading }) => {
   return (
     <>
       <Table>

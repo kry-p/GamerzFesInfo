@@ -6,7 +6,7 @@ import { dateToString } from '../modules/date';
 import TextField from '@material-ui/core/TextField';
 
 import Card from './common/Card';
-import ReviewListContainer from '../containers/reviews/ReviewListContainer';
+import ReviewTable from '../components/table/ReviewTable';
 import Button from './common/Button';
 
 // information css
@@ -35,20 +35,26 @@ const FormStyle = styled.div`
   row-gap: 1rem;
 `;
 
-const ReviewInfo = () => {
-  const startDate = new Date();
-  startDate.setDate(startDate.getDate() - 6);
-  const startDateString = dateToString(startDate);
-  const endDateString = dateToString(new Date());
+const ReviewInfo = ({ review, loading, error, form, onChange, onSubmit }) => {
+  if (error) {
+    return <>오류 발생</>;
+  }
+
+  if (loading) {
+    return <>로딩중</>;
+  }
 
   return (
     <Card big>
       <ReviewInfoStyle>
-        <form autoComplete="off">
+        <form onSubmit={onSubmit} autoComplete="off">
           <FormStyle>
             <TextField
               style={{ gridColumn: '1 / span 3' }}
               label="검색할 키워드를 입력하세요"
+              value={form.keyword}
+              name="keyword"
+              onChange={onChange}
             />
 
             <TextField
@@ -56,7 +62,9 @@ const ReviewInfo = () => {
               id="date"
               label="시작일"
               type="date"
-              defaultValue={startDateString}
+              value={form.startdate}
+              name="startdate"
+              onChange={onChange}
               InputLabelProps={{
                 shrink: true,
               }}
@@ -66,7 +74,9 @@ const ReviewInfo = () => {
               id="date"
               label="종료일"
               type="date"
-              defaultValue={endDateString}
+              name="enddate"
+              value={form.enddate}
+              onChange={onChange}
               InputLabelProps={{
                 shrink: true,
               }}
@@ -77,7 +87,7 @@ const ReviewInfo = () => {
             </Button>
           </FormStyle>
         </form>
-        <ReviewListContainer />
+        <ReviewTable review={review} loading={loading} />
       </ReviewInfoStyle>
     </Card>
   );

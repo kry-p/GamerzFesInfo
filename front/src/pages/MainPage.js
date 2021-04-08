@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Header from '../components/Header';
-import ReviewInfo from '../components/ReviewInfo';
 import Footer from '../components/Footer';
+import ReviewListContainer from '../containers/reviews/ReviewListContainer';
 
 const MainStyle = styled.div`
   position: relative;
@@ -17,7 +17,7 @@ const MainPage = () => {
   return (
     <MainStyle>
       <Header />
-      <ReviewInfo />
+      <ReviewListContainer />
       <Footer />
     </MainStyle>
   );
