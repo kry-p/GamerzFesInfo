@@ -4,9 +4,14 @@ import { dateToString } from './date';
 import chrome from 'selenium-webdriver/chrome';
 import logger from './winston';
 
+const options = new chrome.Options();
+
+options.addArguments('--headless');
+options.addArguments('--disable-gpu');
+
 const driver = new webdriver.Builder()
   .forBrowser('chrome')
-  .setChromeOptions(new chrome.Options().headless())
+  .setChromeOptions(options)
   .build();
 
 const baseUrl = 'https://www.grac.or.kr/Statistics/GameStatistics.aspx?';

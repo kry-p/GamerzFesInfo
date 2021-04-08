@@ -3,6 +3,7 @@ import * as reviewCtrl from './review.ctrl';
 
 const review = new Router();
 
-review.get('/list', reviewCtrl.list);
+review.get('/listbydate', reviewCtrl.listbydate);
+review.get('/listbykeyword', reviewCtrl.listbykeyword);
 
 export default review;
