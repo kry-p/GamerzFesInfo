@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { dateToString } from '../modules/date';
-
 import TextField from '@material-ui/core/TextField';
 
 import Card from './common/Card';

@@ -29,7 +29,12 @@ export const changeField = createAction(
   CHANGE_FIELD,
   ({ form, key, value }) => ({ form, key, value }),
 );
-export const listReview = createAction(LIST_REVIEW);
+
+// export const listReview = createAction(LIST_REVIEW);
+export const listReview = createAction(
+  LIST_REVIEW,
+  ({ startdate, enddate }) => ({ startdate, enddate }),
+);
 
 const listReviewSaga = createRequestSaga(LIST_REVIEW, reviewAPI.list);
 export function* reviewSaga() {
@@ -38,7 +43,7 @@ export function* reviewSaga() {
 
 const initialState = {
   search: {
-    keyword: '게임명',
+    keyword: '',
     startdate: startDateString,
     enddate: endDateString,
   },
@@ -50,7 +55,7 @@ const review = handleActions(
   {
     [CHANGE_FIELD]: (state, { payload: { form, key, value } }) =>
       produce(state, (draft) => {
-        draft[form][key] = value; // 예: state.register.username을 바꾼다
+        draft[form][key] = value;
       }),
     [LIST_REVIEW_SUCCESS]: (state, { payload: review }) => ({
       ...state,
