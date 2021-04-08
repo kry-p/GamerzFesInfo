@@ -3,12 +3,22 @@ import { stringToDate } from '../../modules/date';
 
 /*
     심의결과 조회 (날짜 기준, 페이지당 20개씩)
-    GET /api/review/list
+    GET /api/review/listbydate
 */
-export const list = async (ctx) => {
+export const listbydate = async (ctx) => {
   const page = parseInt(ctx.query.page || '1', 20); // 입력값이 없을 경우 기본 페이지는 1
   let startDate = stringToDate(ctx.query.startdate);
   let endDate = stringToDate(ctx.query.enddate);
+  const keyword = ctx.query.keyword;
+  const regex = new RegExp(keyword);
+
+  // startDate 이상 endDate 이하
+  const filter = {
+    "date": {
+      $gte: startDate,
+      $lte: endDate,
+    },
+  }; // prettier-ignore
 
   // 둘 중 하나 이상 비어 있거나 시작일자가 종료일자를 역전하면 오류로 간주, 최근 일주일 표시
   if (startDate === null || endDate === null || startDate > endDate) {
@@ -25,17 +35,52 @@ export const list = async (ctx) => {
   }
 
   try {
-    const review = await Review.find({
-      date: {
-        '$gte': startDate,
-        '$lte': endDate,
-      },
-    }) // startDate 이상 endDate 이하
+    const review = await Review.find(filter)
       .sort({ date: -1 }) // 날짜 역순
       .limit(20)
       .skip((page - 1) * 20)
-      .exec(); // prettier-ignore
-    const reviewCount = await Review.countDocuments().exec();
+      .exec();
+    const reviewCount = await Review.countDocuments(filter).exec();
+    ctx.set('LastPage', Math.ceil(reviewCount / 20));
+    ctx.body = review;
+  } catch (error) {
+    ctx.throw(500, error);
+  }
+};
+
+/*
+    심의결과 조회 (텍스트 기준, 페이지당 20개씩)
+    GET /api/review/listbykeyword
+*/
+export const listbykeyword = async (ctx) => {
+  const page = parseInt(ctx.query.page || '1', 20); // 입력값이 없을 경우 기본 페이지는 1
+  const keyword = ctx.query.keyword;
+  const regex = new RegExp(keyword);
+
+  // 특정 키워드만 검색
+  const filter = {
+    $or: [
+      {
+        "title": { $regex: regex, $options: 'i' },
+      },
+      {
+        "applicant": { $regex: regex, $options: 'i' },
+      },
+    ],
+  }; // prettier-ignore
+
+  if (page < 1) {
+    ctx.status = 400;
+    return;
+  }
+
+  try {
+    const review = await Review.find(filter)
+      .sort({ date: -1 }) // 날짜 역순
+      .limit(20)
+      .skip((page - 1) * 20)
+      .exec();
+    const reviewCount = await Review.countDocuments(filter).exec();
     ctx.set('LastPage', Math.ceil(reviewCount / 20));
     ctx.body = review;
   } catch (error) {
