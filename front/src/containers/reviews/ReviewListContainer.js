@@ -2,20 +2,19 @@ import React, { useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import qs from 'qs';
-import { changeField, listReview } from '../../modules/review';
+import { changeField, listReviewDate } from '../../modules/review';
 import ReviewInfo from '../../components/ReviewInfo';
 
 // redux-saga container for review information
 const ReviewListContainer = ({ location }) => {
   const { form } = useSelector(({ review }) => ({
-    form: review.search,
+    form: review,
   }));
 
   const onChange = (e) => {
     const { value, name } = e.target;
     dispatch(
       changeField({
-        form: 'search',
         key: name,
         value,
       }),
@@ -38,7 +37,7 @@ const ReviewListContainer = ({ location }) => {
     const { startdate, enddate } = qs.parse(location.search, {
       ignoreQueryPrefix: true,
     });
-    dispatch(listReview({ startdate, enddate }));
+    dispatch(listReviewDate({ startdate, enddate }));
   }, [dispatch, location.search]);
 
   return (

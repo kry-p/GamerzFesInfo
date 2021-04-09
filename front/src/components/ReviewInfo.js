@@ -33,6 +33,49 @@ const FormStyle = styled.div`
   row-gap: 1rem;
 `;
 
+const Form = ({ form, onChange }) => {
+  return (
+    <FormStyle>
+      <TextField
+        style={{ gridColumn: '1 / span 3' }}
+        label="검색할 키워드를 입력하세요"
+        value={form.keyword}
+        name="keyword"
+        onChange={onChange}
+      />
+
+      <TextField
+        style={{ gridColumn: '1 / span 1' }}
+        id="date"
+        label="시작일"
+        type="date"
+        value={form.startdate}
+        name="startdate"
+        onChange={onChange}
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+      <TextField
+        style={{ gridColumn: '2 / span 1' }}
+        id="date"
+        label="종료일"
+        type="date"
+        name="enddate"
+        value={form.enddate}
+        onChange={onChange}
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+
+      <Button teal type="submit" style={{ gridColumn: '3 / span 1' }}>
+        검색
+      </Button>
+    </FormStyle>
+  );
+};
+
 const ReviewInfo = ({ review, loading, error, form, onChange, onSubmit }) => {
   if (error) {
     return <>오류 발생</>;
@@ -46,44 +89,7 @@ const ReviewInfo = ({ review, loading, error, form, onChange, onSubmit }) => {
     <Card big>
       <ReviewInfoStyle>
         <form onSubmit={onSubmit} autoComplete="off">
-          <FormStyle>
-            <TextField
-              style={{ gridColumn: '1 / span 3' }}
-              label="검색할 키워드를 입력하세요"
-              value={form.keyword}
-              name="keyword"
-              onChange={onChange}
-            />
-
-            <TextField
-              style={{ gridColumn: '1 / span 1' }}
-              id="date"
-              label="시작일"
-              type="date"
-              value={form.startdate}
-              name="startdate"
-              onChange={onChange}
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-            <TextField
-              style={{ gridColumn: '2 / span 1' }}
-              id="date"
-              label="종료일"
-              type="date"
-              name="enddate"
-              value={form.enddate}
-              onChange={onChange}
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-
-            <Button teal type="submit" style={{ gridColumn: '3 / span 1' }}>
-              검색
-            </Button>
-          </FormStyle>
+          <Form form={form} onChange={onChange} />
         </form>
         <ReviewTable review={review} loading={loading} />
       </ReviewInfoStyle>

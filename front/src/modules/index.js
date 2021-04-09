@@ -4,7 +4,8 @@
 import { combineReducers } from 'redux';
 import { all } from 'redux-saga/effects';
 import loading from './loading';
-import review, { reviewSaga } from './review';
+// import review, { reviewDateSaga, reviewKeywordSaga } from './review';
+import review, { reviewDateSaga } from './review';
 
 const rootReducer = combineReducers({
   loading,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
 });
 
 export function* rootSaga() {
-  yield all([reviewSaga()]);
+  // yield all([reviewDateSaga(), reviewKeywordSaga()]);
+  yield all([reviewDateSaga()]);
 }
 
 export default rootReducer;
