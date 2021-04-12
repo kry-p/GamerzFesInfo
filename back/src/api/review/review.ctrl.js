@@ -40,6 +40,7 @@ export const listbydate = async (ctx) => {
       .exec();
     const reviewCount = await Review.countDocuments(filter).exec();
     ctx.set('LastPage', Math.ceil(reviewCount / 20));
+    ctx.set('CurrentPage', page);
     ctx.set('StartDate', dateToString(startDate));
     ctx.set('EndDate', dateToString(endDate));
     ctx.body = review;
@@ -81,6 +82,7 @@ export const listbykeyword = async (ctx) => {
       .skip((page - 1) * 20)
       .exec();
     const reviewCount = await Review.countDocuments(filter).exec();
+    ctx.set('CurrentPage', page);
     ctx.set('LastPage', Math.ceil(reviewCount / 20));
     ctx.set('Keyword', keyword);
     ctx.body = review;

@@ -2,8 +2,8 @@ import qs from 'qs';
 import client from './client';
 
 // 심의정보 검색 (날짜 기반)
-export const listbydate = ({ startdate, enddate }) => {
-  const queryString = qs.stringify({ startdate, enddate });
+export const listbydate = ({ startdate, enddate, page }) => {
+  const queryString = qs.stringify({ startdate, enddate, page });
 
   return client.get(`/api/review/listbydate?${queryString}`);
 };
