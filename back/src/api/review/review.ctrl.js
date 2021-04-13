@@ -6,7 +6,7 @@ import { dateToString, stringToDate } from '../../modules/date';
     GET /api/review/listbydate
 */
 export const listbydate = async (ctx) => {
-  const page = parseInt(ctx.query.page || '1', 20); // 입력값이 없을 경우 기본 페이지는 1
+  const page = parseInt(ctx.query.page || '1', 10); // 입력값이 없을 경우 기본 페이지는 1
   let startDate = stringToDate(ctx.query.startdate);
   let endDate = stringToDate(ctx.query.enddate);
 
@@ -35,11 +35,11 @@ export const listbydate = async (ctx) => {
   try {
     const review = await Review.find(filter)
       .sort({ date: -1 }) // 날짜 역순
-      .limit(20)
-      .skip((page - 1) * 20)
+      .limit(10)
+      .skip((page - 1) * 10)
       .exec();
     const reviewCount = await Review.countDocuments(filter).exec();
-    ctx.set('LastPage', Math.ceil(reviewCount / 20));
+    ctx.set('LastPage', Math.ceil(reviewCount / 10));
     ctx.set('CurrentPage', page);
     ctx.set('StartDate', dateToString(startDate));
     ctx.set('EndDate', dateToString(endDate));
@@ -54,7 +54,7 @@ export const listbydate = async (ctx) => {
     GET /api/review/listbykeyword
 */
 export const listbykeyword = async (ctx) => {
-  const page = parseInt(ctx.query.page || '1', 20); // 입력값이 없을 경우 기본 페이지는 1
+  const page = parseInt(ctx.query.page || '1', 10); // 입력값이 없을 경우 기본 페이지는 1
   const keyword = ctx.query.keyword;
   const regex = new RegExp(keyword);
 
@@ -78,12 +78,12 @@ export const listbykeyword = async (ctx) => {
   try {
     const review = await Review.find(filter)
       .sort({ date: -1 }) // 날짜 역순
-      .limit(20)
-      .skip((page - 1) * 20)
+      .limit(10)
+      .skip((page - 1) * 10)
       .exec();
     const reviewCount = await Review.countDocuments(filter).exec();
     ctx.set('CurrentPage', page);
-    ctx.set('LastPage', Math.ceil(reviewCount / 20));
+    ctx.set('LastPage', Math.ceil(reviewCount / 10));
     ctx.set('Keyword', keyword);
     ctx.body = review;
   } catch (error) {

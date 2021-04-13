@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import qs from 'qs';
 import { changeField, listReviewDate } from '../../modules/review';
@@ -24,11 +23,6 @@ const ReviewListContainer = ({ location }) => {
     );
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    console.log('e');
-  };
-
   const dispatch = useDispatch();
   const { review, error, loading } = useSelector(({ review, loading }) => ({
     review: review.review,
@@ -43,11 +37,7 @@ const ReviewListContainer = ({ location }) => {
     dispatch(listReviewDate({ startdate, enddate, page }));
   }, [dispatch, location.search]);
 
-  const handleChange = (event, value) => {
-    console.log(event, value);
-  };
-
-  const queryBuilder = (startdate, enddate, page) => {
+  const queryHandler = (startdate, enddate, page) => {
     const query = qs.stringify({ startdate, enddate, page });
     return query;
   };
@@ -59,20 +49,16 @@ const ReviewListContainer = ({ location }) => {
         onChange={onChange}
         review={review}
         loading={loading}
-        onSubmit={onSubmit}
         error={error}
       />
       {form.lastpage !== 0 ? (
         <Pagination
+          page={form.currentpage}
           count={form.lastpage}
           renderItem={(item) => (
             <PaginationItem
               component={Link}
-              to={`${
-                item.page === 1
-                  ? ''
-                  : `?${queryBuilder(form.startdate, form.enddate, item.page)}`
-              }`}
+              to={`?${queryHandler(form.startdate, form.enddate, item.page)}`}
               {...item}
             />
           )}

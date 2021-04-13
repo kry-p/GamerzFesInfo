@@ -1,11 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import qs from 'qs';
 
 import TextField from '@material-ui/core/TextField';
 
 import Card from './common/Card';
+import Search from './Search';
 import ReviewTable from '../components/table/ReviewTable';
-import Button from './common/Button';
+
+import IconButton from '@material-ui/core/IconButton';
+import { MdSearch } from 'react-icons/md';
 
 // information css
 const ReviewInfoStyle = styled.div`
@@ -28,10 +32,15 @@ const ReviewInfoStyle = styled.div`
 // searcg form css
 const FormStyle = styled.div`
   display: grid;
-  grid-template-columns: 5fr 5fr 3fr;
+  grid-template-columns: 5fr 5fr 1fr;
   column-gap: 0.5rem;
   row-gap: 1rem;
 `;
+
+const queryBuilder = (startdate, enddate, page) => {
+  const query = qs.stringify({ startdate, enddate, page });
+  return query;
+};
 
 const Form = ({ form, onChange }) => {
   return (
@@ -69,14 +78,18 @@ const Form = ({ form, onChange }) => {
         }}
       />
 
-      <Button teal type="submit" style={{ gridColumn: '3 / span 1' }}>
-        검색
-      </Button>
+      <IconButton href={`?${queryBuilder(form.startdate, form.enddate, 1)}`}>
+        <MdSearch />
+      </IconButton>
     </FormStyle>
   );
 };
 
-const ReviewInfo = ({ review, loading, error, form, onChange, onSubmit }) => {
+const CardStyle = styled(Card)`
+  padding: 1.25rem;
+`;
+
+const ReviewInfo = ({ review, loading, error, form, onChange }) => {
   if (error) {
     return <>오류 발생</>;
   }
@@ -86,14 +99,12 @@ const ReviewInfo = ({ review, loading, error, form, onChange, onSubmit }) => {
   }
 
   return (
-    <Card big>
+    <CardStyle big>
       <ReviewInfoStyle>
-        <form onSubmit={onSubmit} autoComplete="off">
-          <Form form={form} onChange={onChange} />
-        </form>
+        <Search form={form} onChange={onChange} />
         <ReviewTable review={review} loading={loading} />
       </ReviewInfoStyle>
-    </Card>
+    </CardStyle>
   );
 };
 

@@ -52,7 +52,7 @@ const Header = () => {
   return (
     <Card small>
       <ContentWrapper>
-        <Button left icon={'refresh'}>
+        <Button left icon>
           <RiRefreshLine />
         </Button>
 
@@ -61,7 +61,7 @@ const Header = () => {
           <Logo colorize>alive</Logo>
         </TextWrappper>
 
-        <Button right icon={'refresh'}>
+        <Button right icon>
           <RiMenuFill />
         </Button>
       </ContentWrapper>
