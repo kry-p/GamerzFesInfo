@@ -3,12 +3,12 @@ import { withRouter, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import qs from 'qs';
 import { changeField, listReviewDate } from '../../modules/review';
-import ReviewInfo from '../../components/ReviewInfo';
+import ReviewInfoDate from '../../components/info/ReviewInfoDate';
 import Pagination from '@material-ui/lab/Pagination';
 import PaginationItem from '@material-ui/lab/PaginationItem';
 
 // redux-saga container for review information
-const ReviewListContainer = ({ location }) => {
+const ReviewListDateContainer = ({ location }) => {
   const { form } = useSelector(({ review }) => ({
     form: review,
   }));
@@ -27,7 +27,7 @@ const ReviewListContainer = ({ location }) => {
   const { review, error, loading } = useSelector(({ review, loading }) => ({
     review: review.review,
     error: review.error,
-    loading: loading['review/LIST_REVIEW'],
+    loading: loading['review/LIST_REVIEW_DATE'],
   }));
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const ReviewListContainer = ({ location }) => {
 
   return (
     <>
-      <ReviewInfo
+      <ReviewInfoDate
         form={form}
         onChange={onChange}
         review={review}
@@ -55,6 +55,7 @@ const ReviewListContainer = ({ location }) => {
         <Pagination
           page={form.currentpage}
           count={form.lastpage}
+          siblingCount={0}
           renderItem={(item) => (
             <PaginationItem
               component={Link}
@@ -70,4 +71,4 @@ const ReviewListContainer = ({ location }) => {
   );
 };
 
-export default withRouter(ReviewListContainer);
+export default withRouter(ReviewListDateContainer);

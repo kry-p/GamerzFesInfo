@@ -5,6 +5,7 @@ import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
 import { takeLatest } from 'redux-saga/effects';
 
+import { dateToString } from '../modules/date';
 import createRequestSaga, {
   createRequestActionTypes,
 } from '../lib/createRequestSaga';
@@ -19,10 +20,16 @@ import * as reviewAPI from '../lib/api/review';
 const CHANGE_FIELD = 'review/CHANGE_FIELD';
 
 const [
-  LIST_REVIEW,
-  LIST_REVIEW_SUCCESS,
-  LIST_REVIEW_FAILURE,
-] = createRequestActionTypes('review/LIST_REVIEW');
+  LIST_REVIEW_DATE,
+  LIST_REVIEW_DATE_SUCCESS,
+  LIST_REVIEW_DATE_FAILURE,
+] = createRequestActionTypes('review/LIST_REVIEW_DATE');
+
+const [
+  LIST_REVIEW_KEYWORD,
+  LIST_REVIEW_KEYWORD_SUCCESS,
+  LIST_REVIEW_KEYWORD_FAILURE,
+] = createRequestActionTypes('review/LIST_REVIEW_KEYWORD');
 
 export const changeField = createAction(CHANGE_FIELD, ({ key, value }) => ({
   key,
@@ -31,26 +38,33 @@ export const changeField = createAction(CHANGE_FIELD, ({ key, value }) => ({
 
 // export const listReview = createAction(LIST_REVIEW);
 export const listReviewDate = createAction(
-  LIST_REVIEW,
+  LIST_REVIEW_DATE,
   ({ startdate, enddate, page }) => ({ startdate, enddate, page }),
 );
 
-export const listReviewKeyword = createAction(LIST_REVIEW, ({ keyword }) => ({
-  keyword,
-}));
+export const listReviewKeyword = createAction(
+  LIST_REVIEW_KEYWORD,
+  ({ keyword, page }) => ({
+    keyword,
+    page,
+  }),
+);
 
-const listReviewDateSaga = createRequestSaga(LIST_REVIEW, reviewAPI.listbydate);
+const listReviewDateSaga = createRequestSaga(
+  LIST_REVIEW_DATE,
+  reviewAPI.listbydate,
+);
 const listReviewKeywordSaga = createRequestSaga(
-  LIST_REVIEW,
+  LIST_REVIEW_KEYWORD,
   reviewAPI.listbykeyword,
 );
 
 export function* reviewDateSaga() {
-  yield takeLatest(LIST_REVIEW, listReviewDateSaga);
+  yield takeLatest(LIST_REVIEW_DATE, listReviewDateSaga);
 }
 
 export function* reviewKeywordSaga() {
-  yield takeLatest(LIST_REVIEW, listReviewKeywordSaga);
+  yield takeLatest(LIST_REVIEW_KEYWORD, listReviewKeywordSaga);
 }
 
 const initialState = {
@@ -71,15 +85,35 @@ const review = handleActions(
       produce(state, (draft) => {
         draft[key] = value;
       }),
-    [LIST_REVIEW_SUCCESS]: (state, { payload: review, meta: response }) => ({
+    [LIST_REVIEW_DATE_SUCCESS]: (state, { payload: review, meta: response }) =>
+      produce(state, (draft) => {
+        draft.review = review.map((item) => {
+          item.date = dateToString(new Date(item.date));
+          return item;
+        });
+        draft.startdate = response.headers['startdate'];
+        draft.enddate = response.headers['enddate'];
+        draft.currentpage = parseInt(response.headers['currentpage'], 10);
+        draft.lastpage = parseInt(response.headers['lastpage'], 10);
+      }),
+    [LIST_REVIEW_DATE_FAILURE]: (state, { payload: error }) => ({
       ...state,
-      review,
-      startdate: response.headers['startdate'],
-      enddate: response.headers['enddate'],
-      currentpage: parseInt(response.headers['currentpage'], 10),
-      lastpage: parseInt(response.headers['lastpage'], 10),
+      error,
     }),
-    [LIST_REVIEW_FAILURE]: (state, { payload: error }) => ({
+    [LIST_REVIEW_KEYWORD_SUCCESS]: (
+      state,
+      { payload: review, meta: response },
+    ) =>
+      produce(state, (draft) => {
+        draft.review = review.map((item) => {
+          item.date = dateToString(new Date(item.date));
+          return item;
+        });
+        draft.keyword = response.headers['keyword'];
+        draft.currentpage = parseInt(response.headers['currentpage'], 10);
+        draft.lastpage = parseInt(response.headers['lastpage'], 10);
+      }),
+    [LIST_REVIEW_KEYWORD_FAILURE]: (state, { payload: error }) => ({
       ...state,
       error,
     }),

@@ -31,6 +31,16 @@ const params = {
   // 05: 등급거부예정 06: 등급거부확정 07: 등급취소예정 09: 등급취소
 };
 
+const rating = {
+  all: 'https://www.grac.or.kr/Images/grade_icon/rating_all.gif',
+  y12: 'https://www.grac.or.kr/Images/grade_icon/rating_12.gif',
+  y15: 'https://www.grac.or.kr/Images/grade_icon/rating_15.gif',
+  y18: 'https://www.grac.or.kr/Images/grade_icon/rating_18.gif',
+  reject: 'https://www.grac.or.kr/Images/grade_icon/icon_reject.gif',
+  cancel1: 'https://www.grac.or.kr/Images/grade_icon/icon_cancel1.gif',
+  cancel2: 'https://www.grac.or.kr/Images/grade_icon/icon_cancel2.gif',
+};
+
 // 쿼리 스트링
 const createQueryParams = (params) =>
   Object.keys(params)
@@ -75,7 +85,9 @@ async function crawl(pages) {
         game.date = txt;
         break;
       case 4:
-        game.rating = txt;
+        for (let key in rating) {
+          if (txt === rating[key]) game.rating = key;
+        }
         break;
       case 5:
         game.code = txt;

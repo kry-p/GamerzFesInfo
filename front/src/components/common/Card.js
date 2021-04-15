@@ -10,10 +10,11 @@ const CardStyle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
-  margin: 8px;
-  margin-bottom: 12px;
-  border-radius: 12px;
+  padding: 0.75rem;
+  /* margin: 0.25rem; */
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.75rem;
   box-sizing: border-box;
   box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);
 
@@ -27,6 +28,26 @@ const CardStyle = styled.div`
     props.subColor &&
     css`
       background-color: ${palette.logo_base[1]};
+    `}
+
+  ${(props) =>
+    props.search &&
+    css`
+      background-color: ${palette.gray[0]};
+      margin: 0;
+      margin-bottom: 0.5rem;
+      padding-left: 1rem;
+      padding-right: 0rem;
+      padding-top: 0rem;
+      padding-bottom: 0rem;
+
+      @media (max-width: 512px) {
+        width: 100%;
+      }
+
+      @media (min-width: 512px) {
+        width: 512px;
+      }
     `}
 
   ${(props) =>

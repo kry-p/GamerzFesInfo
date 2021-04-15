@@ -5,18 +5,16 @@ import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
-import Review from './Review';
+import Review from './Items';
 
 // table items using redux-saga
 const ReviewItem = ({ review }) => {
-  const { rating, date, title, applicant } = review;
-  return (
-    <Review title={title} applicant={applicant} date={date} rating={rating} />
-  );
+  const { rating, title, applicant } = review;
+  return <Review title={title} applicant={applicant} rating={rating} />;
 };
 
 // table element
-const ReviewTable = ({ review, loading }) => {
+const Skeleton = ({ review, loading }) => {
   return (
     <>
       <Table>
@@ -24,7 +22,6 @@ const ReviewTable = ({ review, loading }) => {
           <TableRow>
             <TableCell align={'center'}>게임물명</TableCell>
             <TableCell align={'center'}>신청자</TableCell>
-            <TableCell align={'center'}>분류일</TableCell>
             <TableCell align={'center'}>등급</TableCell>
           </TableRow>
         </TableHead>
@@ -42,4 +39,4 @@ const ReviewTable = ({ review, loading }) => {
   );
 };
 
-export default ReviewTable;
+export default Skeleton;

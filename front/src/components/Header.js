@@ -50,7 +50,7 @@ const ContentWrapper = styled(Responsive)`
  */
 const Header = () => {
   return (
-    <Card small>
+    <Card big>
       <ContentWrapper>
         <Button left icon>
           <RiRefreshLine />

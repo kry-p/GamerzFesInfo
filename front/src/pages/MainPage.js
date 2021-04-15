@@ -3,7 +3,8 @@ import styled from 'styled-components';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import ReviewListContainer from '../containers/reviews/ReviewListContainer';
+import ReviewListKeywordContainer from '../containers/reviews/ReviewListKeywordContainer';
+import ReviewlistDateContainer from '../containers/reviews/ReviewListDateContainer';
 
 const MainStyle = styled.div`
   position: relative;
@@ -17,7 +18,8 @@ const MainPage = () => {
   return (
     <MainStyle>
       <Header />
-      <ReviewListContainer />
+      {/* <ReviewListKeywordContainer /> */}
+      <ReviewlistDateContainer />
       <Footer />
     </MainStyle>
   );

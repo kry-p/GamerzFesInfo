@@ -21,7 +21,7 @@ export const listbydate = async (ctx) => {
 
   // startDate 이상 endDate 이하
   const filter = {
-    "date": {
+    date: {
       $gte: startDate,
       $lte: endDate,
     },

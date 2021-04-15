@@ -12,13 +12,18 @@ const FooterStyle = styled.div`
     font-style: normal;
   }
   font-family: TmoneyRoundWindRegular;
-  font-size: 0.75rem;
+  font-size: 0.625em;
 `;
 
 const Footer = () => {
   return (
-    <Card small>
-      <FooterStyle>여기에 Footer 내용이 들어갑니다.</FooterStyle>
+    <Card big>
+      <FooterStyle>
+        gamealive 는 게임물관리위원회의 심의정보를 수집, 제공하는 웹
+        사이트입니다.
+        <br></br>민간이 집계한 정보이므로 공식적 근거 자료로 활용할 수 없는 점
+        유의 바랍니다.
+      </FooterStyle>
     </Card>
   );
 };
