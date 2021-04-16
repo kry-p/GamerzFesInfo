@@ -13,6 +13,7 @@ export const AccordionSummary = withStyles({
     '&$expanded': {
       margin: '0px 0',
     },
+    flexGrow: 0,
   },
   expanded: {},
 })(MuiAccordionSummary);

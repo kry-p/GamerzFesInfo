@@ -1,11 +1,13 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import { RiRefreshLine, RiMenuFill } from 'react-icons/ri';
+import { RiRefreshLine, RiMenuFill, RiNotification4Line } from 'react-icons/ri';
 
 import Card from './common/Card';
 import Responsive from './common/Responsive';
 import palette from '../lib/styles/palette';
+
+import IconButton from '@material-ui/core/IconButton';
 import Button from './common/Button';
 
 // items css
@@ -38,11 +40,6 @@ const ContentWrapper = styled(Responsive)`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  .left.right {
-    display: flex;
-    align-items: center;
-  }
 `;
 
 /*
@@ -50,20 +47,20 @@ const ContentWrapper = styled(Responsive)`
  */
 const Header = () => {
   return (
-    <Card big>
+    <Card big header>
       <ContentWrapper>
-        <Button left icon>
-          <RiRefreshLine />
-        </Button>
+        <IconButton>
+          <RiNotification4Line />
+        </IconButton>
 
         <TextWrappper>
           <Logo>game</Logo>
           <Logo colorize>alive</Logo>
         </TextWrappper>
 
-        <Button right icon>
+        <IconButton>
           <RiMenuFill />
-        </Button>
+        </IconButton>
       </ContentWrapper>
     </Card>
   );

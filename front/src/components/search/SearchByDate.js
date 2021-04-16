@@ -4,9 +4,6 @@ import qs from 'qs';
 
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
-import InputBase from '@material-ui/core/InputBase';
-
-import Card from '../common/Card';
 
 import { MdSearch } from 'react-icons/md';
 

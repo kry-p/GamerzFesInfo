@@ -25,6 +25,11 @@ const palette = {
     '#087f5b',
   ],
   logo_base: ['#6ac1b8', '#e1f6f4', '#f0fbfa'],
+  // sns icons (0: default, 1: hover, 2: icon)
+  kakaotalk: ['#faf096', '#f9e000', '#3b1e1e'],
+  facebook: ['#c7d9ff', '#80a8ff', '#3b5998'],
+  twitter: ['#ccf1ff', '#a6e7ff', '#22a0ee'],
+  naverblog: [],
 };
 
 export default palette;

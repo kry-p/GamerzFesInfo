@@ -3,13 +3,13 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 
 // rating image
-import all from '../../../resources/images/rating_all.gif';
-import y12 from '../../../resources/images/rating_12.gif';
-import y15 from '../../../resources/images/rating_15.gif';
-import y18 from '../../../resources/images/rating_18.gif';
-import reject from '../../../resources/images/icon_reject.gif';
-import cancel1 from '../../../resources/images/icon_cancel1.gif';
-import cancel2 from '../../../resources/images/icon_cancel2.gif';
+import all from '../../../resources/rating/rating_all.gif';
+import y12 from '../../../resources/rating/rating_12.gif';
+import y15 from '../../../resources/rating/rating_15.gif';
+import y18 from '../../../resources/rating/rating_18.gif';
+import reject from '../../../resources/rating/icon_reject.gif';
+import cancel1 from '../../../resources/rating/icon_cancel1.gif';
+import cancel2 from '../../../resources/rating/icon_cancel2.gif';
 
 const src = {
   all: all,

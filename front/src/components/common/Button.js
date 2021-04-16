@@ -8,7 +8,7 @@ import palette from '../../lib/styles/palette';
 // button css
 const buttonStyle = css`
   border: none;
-  border-radius: 4px;
+  border-radius: 0.75rem;
   font-size: 1rem;
   font-weight: bold;
   padding: 0.25rem 1rem;
@@ -16,11 +16,48 @@ const buttonStyle = css`
   outline: none;
   cursor: pointer;
 
-  background: ${palette.gray[8]};
-  &:hover {
-    background: ${palette.gray[6]};
-  }
+  /* 
+   * prop for sns icons
+   */
 
+  // common
+  ${(props) =>
+    props.sns &&
+    css`
+      margin-top: 0.5rem;
+      padding: 0rem;
+      width: 2rem;
+      height: 2rem;
+    `}
+  // kakaotalk
+  ${(props) =>
+    props.kakaotalk &&
+    css`
+      background: ${palette.kakaotalk[0]};
+      &:hover {
+        background: ${palette.kakaotalk[1]};
+      }
+    `}
+  // facebook
+  ${(props) =>
+    props.facebook &&
+    css`
+      background: ${palette.facebook[0]};
+      &:hover {
+        background: ${palette.facebook[1]};
+      }
+    `}
+  // twitter
+  ${(props) =>
+    props.twitter &&
+    css`
+      background: ${palette.twitter[0]};
+      &:hover {
+        background: ${palette.twitter[1]};
+      }
+    `}
+  
+  // size
   ${(props) =>
     props.fullWidth &&
     css`
@@ -30,15 +67,7 @@ const buttonStyle = css`
       font-size: 1.125rem;
     `}
 
-  ${(props) =>
-    props.teal &&
-    css`
-      background: ${palette.teal[5]};
-      &:hover {
-        background: ${palette.teal[3]};
-      }
-    `}
-
+  // icon image
   ${(props) =>
     props.icon &&
     css`

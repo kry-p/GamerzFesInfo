@@ -30,6 +30,8 @@ const CardStyle = styled.div`
       background-color: ${palette.logo_base[1]};
     `}
 
+    
+
   ${(props) =>
     props.search &&
     css`
@@ -48,6 +50,13 @@ const CardStyle = styled.div`
       @media (min-width: 512px) {
         width: 512px;
       }
+    `}
+
+  ${(props) =>
+    props.header &&
+    css`
+      background-color: ${palette.gray[0]};
+      padding: 0.25rem;
     `}
 
   ${(props) =>
