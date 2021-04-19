@@ -18,8 +18,8 @@ const MainPage = () => {
   return (
     <MainStyle>
       <Header />
-      {/* <ReviewListKeywordContainer /> */}
-      <ReviewlistDateContainer />
+      <ReviewListKeywordContainer />
+      {/* <ReviewlistDateContainer /> */}
       <Footer />
     </MainStyle>
   );

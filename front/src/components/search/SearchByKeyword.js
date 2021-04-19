@@ -24,9 +24,9 @@ const SearchByKeyword = ({ form, onChange }) => {
       <SearchFormStyle>
         <InputBase
           style={{ gridColumn: '1 / span 1' }}
-          placeholder="검색할 내용을 입력하세요"
+          placeholder="검색"
           inputProps={{ 'aria-label': 'naked' }}
-          value={form.keyword}
+          value={form.keyword === 'undefined' ? '' : form.keyword}
           type="keyword"
           name="keyword"
           onChange={onChange}

@@ -55,7 +55,6 @@ const CardStyle = styled.div`
   ${(props) =>
     props.header &&
     css`
-      background-color: ${palette.gray[0]};
       padding: 0.25rem;
     `}
 

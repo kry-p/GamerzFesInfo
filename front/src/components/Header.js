@@ -1,14 +1,14 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import { RiRefreshLine, RiMenuFill, RiNotification4Line } from 'react-icons/ri';
+import { RiMenuFill, RiNotification4Line } from 'react-icons/ri';
 
 import Card from './common/Card';
 import Responsive from './common/Responsive';
 import palette from '../lib/styles/palette';
 
 import IconButton from '@material-ui/core/IconButton';
-import Button from './common/Button';
+import MenuDrawer from './common/MenuDrawer';
 
 // items css
 const Logo = styled.div`
@@ -49,8 +49,9 @@ const Header = () => {
   return (
     <Card big header>
       <ContentWrapper>
+        {/* <MenuDrawer /> */}
         <IconButton>
-          <RiNotification4Line />
+          <RiMenuFill />
         </IconButton>
 
         <TextWrappper>
@@ -59,7 +60,7 @@ const Header = () => {
         </TextWrappper>
 
         <IconButton>
-          <RiMenuFill />
+          <RiNotification4Line />
         </IconButton>
       </ContentWrapper>
     </Card>

@@ -11,12 +11,6 @@ import createRequestSaga, {
 } from '../lib/createRequestSaga';
 import * as reviewAPI from '../lib/api/review';
 
-// initial state (date)
-// const startDate = new Date();
-// startDate.setDate(startDate.getDate() - 6);
-// const startDateString = dateToString(startDate);
-// const endDateString = dateToString(new Date());
-
 const CHANGE_FIELD = 'review/CHANGE_FIELD';
 
 const [
@@ -36,7 +30,6 @@ export const changeField = createAction(CHANGE_FIELD, ({ key, value }) => ({
   value,
 }));
 
-// export const listReview = createAction(LIST_REVIEW);
 export const listReviewDate = createAction(
   LIST_REVIEW_DATE,
   ({ startdate, enddate, page }) => ({ startdate, enddate, page }),
@@ -109,7 +102,7 @@ const review = handleActions(
           item.date = dateToString(new Date(item.date));
           return item;
         });
-        draft.keyword = response.headers['keyword'];
+        draft.keyword = decodeURI(response.headers['keyword']);
         draft.currentpage = parseInt(response.headers['currentpage'], 10);
         draft.lastpage = parseInt(response.headers['lastpage'], 10);
       }),

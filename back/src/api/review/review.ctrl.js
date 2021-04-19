@@ -84,7 +84,7 @@ export const listbykeyword = async (ctx) => {
     const reviewCount = await Review.countDocuments(filter).exec();
     ctx.set('CurrentPage', page);
     ctx.set('LastPage', Math.ceil(reviewCount / 10));
-    ctx.set('Keyword', keyword);
+    ctx.set('Keyword', encodeURI(keyword));
     ctx.body = review;
   } catch (error) {
     ctx.throw(500, error);

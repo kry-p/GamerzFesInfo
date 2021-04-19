@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { ReactComponent as Kakaotalk } from '../resources/sns/kakaotalk.svg';
 import { ReactComponent as Facebook } from '../resources/sns/facebook.svg';
 import { ReactComponent as Twitter } from '../resources/sns/twitter.svg';
+import { ReactComponent as Blog } from '../resources/sns/blog.svg';
+import { ReactComponent as Link } from '../resources/sns/link.svg';
 
 import Button from '../components/common/Button';
 import Card from './common/Card';
@@ -86,7 +88,25 @@ const Footer = () => {
           <Button sns twitter style={{ gridColumn: '1 / span 1`' }}>
             <Twitter fill={`${palette.twitter[2]}`} width="16" height="16" />
           </Button>
+          <Button sns blog style={{ gridColumn: '1 / span 1`' }}>
+            <Blog fill={`${palette.naverblog[2]}`} width="16" height="16" />
+          </Button>
+          <Button sns link style={{ gridColumn: '1 / span 1`' }}>
+            <Link fill={`${palette.link[2]}`} width="16" height="16" />
+          </Button>
         </SnsStyle>
+        <div
+          style={{
+            gridColumn: '1 / span 3',
+            textAlign: 'center',
+            fontWeight: 'bold',
+          }}
+        >
+          문의하기
+        </div>
+        <div style={{ gridColumn: '1 / span 3', textAlign: 'center' }}>
+          <a href="mailto: game.alive.kr@gmail.com">game.alive.kr@gmail.com</a>
+        </div>
         <Accordion
           style={{
             gridColumn: '1 / span 3',
@@ -96,7 +116,9 @@ const Footer = () => {
           <AccordionSummary style={{ fontWeight: 'bold' }}>
             저작권 표기
           </AccordionSummary>
-          <AccordionDetails>
+          <AccordionDetails
+            style={{ display: 'flex', flexDirection: 'column' }}
+          >
             <div>
               Icons made by{' '}
               <a href="https://www.freepik.com" title="Freepik">
@@ -106,6 +128,11 @@ const Footer = () => {
               <a href="https://www.flaticon.com/" title="Flaticon">
                 www.flaticon.com
               </a>
+            </div>
+            <div>
+              모든 소스 코드는{' '}
+              <a href="https://github.com/kry-p/GamerzFesInfo">GitHub</a>에
+              공개되어 있으며 MIT 라이선스에 의거 자유롭게 사용하실 수 있습니다.
             </div>
           </AccordionDetails>
         </Accordion>

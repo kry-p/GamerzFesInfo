@@ -34,7 +34,7 @@ const buttonStyle = css`
     props.kakaotalk &&
     css`
       background: ${palette.kakaotalk[0]};
-      &:hover {
+      &:active {
         background: ${palette.kakaotalk[1]};
       }
     `}
@@ -43,7 +43,7 @@ const buttonStyle = css`
     props.facebook &&
     css`
       background: ${palette.facebook[0]};
-      &:hover {
+      &:active {
         background: ${palette.facebook[1]};
       }
     `}
@@ -52,8 +52,28 @@ const buttonStyle = css`
     props.twitter &&
     css`
       background: ${palette.twitter[0]};
-      &:hover {
+      &:active {
         background: ${palette.twitter[1]};
+      }
+    `}
+
+  // blog
+  ${(props) =>
+    props.blog &&
+    css`
+      background: ${palette.naverblog[0]};
+      &:active {
+        background: ${palette.naverblog[1]};
+      }
+    `}
+
+  // link
+  ${(props) =>
+    props.link &&
+    css`
+      background: ${palette.link[0]};
+      &:active {
+        background: ${palette.link[1]};
       }
     `}
   

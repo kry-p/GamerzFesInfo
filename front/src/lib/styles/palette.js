@@ -29,7 +29,8 @@ const palette = {
   kakaotalk: ['#faf096', '#f9e000', '#3b1e1e'],
   facebook: ['#c7d9ff', '#80a8ff', '#3b5998'],
   twitter: ['#ccf1ff', '#a6e7ff', '#22a0ee'],
-  naverblog: [],
+  naverblog: ['#cfffe4', '#abffcf', '#03c75a'],
+  link: ['#ffc6bf', '#ff9387', '#ff4e3b'],
 };
 
 export default palette;
