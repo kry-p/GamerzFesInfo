@@ -14,7 +14,7 @@ const ReviewItem = ({ review }) => {
 };
 
 // table element
-const Skeleton = ({ review, loading }) => {
+const TableSkeleton = ({ review, loading }) => {
   return (
     <>
       <Table>
@@ -39,4 +39,4 @@ const Skeleton = ({ review, loading }) => {
   );
 };
 
-export default Skeleton;
+export default TableSkeleton;

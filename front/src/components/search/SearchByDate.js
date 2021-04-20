@@ -22,7 +22,6 @@ const SearchFormStyle = styled.div`
 
 const SearchByDate = ({ form, onChange }) => {
   return (
-    // <Card search>
     <SearchFormStyle>
       <TextField
         style={{ gridColumn: '1 / span 1' }}
@@ -48,24 +47,6 @@ const SearchByDate = ({ form, onChange }) => {
           shrink: true,
         }}
       />
-      {/* <InputBase
-          style={{ gridColumn: '1 / span 1' }}
-          placeholder="검색할 내용을 입력하세요"
-          inputProps={{ 'aria-label': 'naked' }}
-          value={form.startdate}
-          type="date"
-          name="startdate"
-          onChange={onChange}
-        />
-        <InputBase
-          style={{ gridColumn: '2 / span 1' }}
-          placeholder="검색할 내용을 입력하세요"
-          inputProps={{ 'aria-label': 'naked' }}
-          value={form.enddate}
-          type="date"
-          name="enddate"
-          onChange={onChange}
-        /> */}
       <IconButton
         style={{ gridColumn: '3 / span 1' }}
         href={`?${queryBuilder(form.startdate, form.enddate, 1)}`}
@@ -73,37 +54,6 @@ const SearchByDate = ({ form, onChange }) => {
         <MdSearch />
       </IconButton>
     </SearchFormStyle>
-    // </Card>
-    /* <TextField
-        style={{ gridColumn: '1 / span 1' }}
-        id="date"
-        label="시작일"
-        type="date"
-        value={form.startdate}
-        name="startdate"
-        onChange={onChange}
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-      <TextField
-        style={{ gridColumn: '2 / span 1' }}
-        id="date"
-        label="종료일"
-        type="date"
-        name="enddate"
-        value={form.enddate}
-        onChange={onChange}
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-      <IconButton
-        style={{ gridColumn: '3 / span 1' }}
-        href={`?${queryBuilder(form.startdate, form.enddate, 1)}`}
-      >
-        <MdSearch />
-      </IconButton> */
   );
 };
 

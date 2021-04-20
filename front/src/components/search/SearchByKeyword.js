@@ -16,6 +16,7 @@ const queryBuilder = (keyword, page) => {
 const SearchFormStyle = styled.div`
   display: grid;
   grid-template-columns: 8fr 1fr;
+  place-content: space-between center;
 `;
 
 const SearchByKeyword = ({ form, onChange }) => {

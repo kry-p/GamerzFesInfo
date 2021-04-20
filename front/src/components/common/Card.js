@@ -30,8 +30,6 @@ const CardStyle = styled.div`
       background-color: ${palette.logo_base[1]};
     `}
 
-    
-
   ${(props) =>
     props.search &&
     css`
@@ -42,14 +40,6 @@ const CardStyle = styled.div`
       padding-right: 0rem;
       padding-top: 0rem;
       padding-bottom: 0rem;
-
-      @media (max-width: 512px) {
-        width: 100%;
-      }
-
-      @media (min-width: 512px) {
-        width: 512px;
-      }
     `}
 
   ${(props) =>
@@ -61,24 +51,24 @@ const CardStyle = styled.div`
   ${(props) =>
     props.small &&
     css`
-      @media (max-width: 512px) {
+      @media (max-width: 384px) {
         width: 80%;
       }
 
-      @media (min-width: 512px) {
-        width: 448px;
+      @media (min-width: 384px) {
+        width: 307px;
       }
     `}
 
     ${(props) =>
     props.big &&
     css`
-      @media (max-width: 512px) {
+      @media (max-width: 384px) {
         width: 100%;
       }
 
-      @media (min-width: 512px) {
-        width: 512px;
+      @media (min-width: 384px) {
+        width: 384px;
       }
     `}
 `;

@@ -38,7 +38,9 @@ const ReviewListKeywordContainer = ({ location }) => {
   }, [dispatch, location.search]);
 
   const queryHandler = (keyword, page) => {
-    const query = qs.stringify({ keyword, page });
+    const word = keyword === 'undefined' ? '' : keyword;
+    const query = qs.stringify({ word, page });
+
     return query;
   };
 

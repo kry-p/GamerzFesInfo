@@ -1,46 +1,43 @@
 import React from 'react';
-import styled from 'styled-components';
 
-import Card from '../common/Card';
 import SearchByKeyword from '../search/SearchByKeyword';
-import Skeleton from '../table/review/Skeleton';
+import TableSkeleton from '../table/review/TableSkeleton';
 
-// information css
-const ReviewInfoStyle = styled.div`
-  @font-face {
-    font-family: 'TmoneyRoundWindRegular';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindRegular.woff')
-      format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
-  font-family: TmoneyRoundWindRegular;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: small;
-`;
-
-const CardStyle = styled(Card)`
-  padding: 1.25rem;
-`;
+import { ReviewInfoStyle, CardStyle } from './ReviewInfoStyle';
 
 const ReviewInfoKeyword = ({ review, loading, error, form, onChange }) => {
-  if (error) {
-    return <>오류 발생</>;
-  }
+  let result = null;
 
-  if (loading) {
-    return <>로딩중</>;
+  if (error) {
+    result = (
+      <div style={{ padding: '2rem' }}>
+        오류가 발생했습니다. 일시적 서버 문제일 수 있습니다.
+      </div>
+    );
+  } else if (loading) {
+    result = (
+      <>
+        <TableSkeleton review={null} loading={loading} />
+        <div style={{ padding: '2rem' }}>로드 중입니다.</div>
+      </>
+    );
+  } else {
+    result = (
+      <>
+        {Array.isArray(review) && review.length === 0 ? (
+          <div style={{ padding: '2rem' }}>찾는 내용이 없습니다.</div>
+        ) : (
+          <TableSkeleton review={review} loading={loading} />
+        )}
+      </>
+    );
   }
 
   return (
     <CardStyle big>
       <ReviewInfoStyle>
         <SearchByKeyword form={form} onChange={onChange} />
-        <Skeleton review={review} loading={loading} />
+        {result}
       </ReviewInfoStyle>
     </CardStyle>
   );

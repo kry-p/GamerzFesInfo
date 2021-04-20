@@ -8,7 +8,6 @@ import Responsive from './common/Responsive';
 import palette from '../lib/styles/palette';
 
 import IconButton from '@material-ui/core/IconButton';
-import MenuDrawer from './common/MenuDrawer';
 
 // items css
 const Logo = styled.div`
@@ -47,23 +46,25 @@ const ContentWrapper = styled(Responsive)`
  */
 const Header = () => {
   return (
-    <Card big header>
-      <ContentWrapper>
-        {/* <MenuDrawer /> */}
-        <IconButton>
-          <RiMenuFill />
-        </IconButton>
+    <>
+      <Card big header>
+        <ContentWrapper>
+          {/* <MenuDrawer /> */}
+          <IconButton>
+            <RiMenuFill />
+          </IconButton>
 
-        <TextWrappper>
-          <Logo>game</Logo>
-          <Logo colorize>alive</Logo>
-        </TextWrappper>
+          <TextWrappper>
+            <Logo>game</Logo>
+            <Logo colorize>alive</Logo>
+          </TextWrappper>
 
-        <IconButton>
-          <RiNotification4Line />
-        </IconButton>
-      </ContentWrapper>
-    </Card>
+          <IconButton>
+            <RiNotification4Line />
+          </IconButton>
+        </ContentWrapper>
+      </Card>
+    </>
   );
 };
 
