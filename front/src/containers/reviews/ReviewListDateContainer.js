@@ -3,7 +3,7 @@ import { withRouter, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import qs from 'qs';
 import { changeField, listReviewDate } from '../../modules/review';
-import ReviewInfoDate from '../../components/info/ReviewInfoDate';
+import ReviewInfo from '../../components/info/ReviewInfo';
 import Pagination from '@material-ui/lab/Pagination';
 import PaginationItem from '@material-ui/lab/PaginationItem';
 
@@ -44,7 +44,8 @@ const ReviewListDateContainer = ({ location }) => {
 
   return (
     <>
-      <ReviewInfoDate
+      <ReviewInfo
+        type="date"
         form={form}
         onChange={onChange}
         review={review}

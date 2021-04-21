@@ -1,11 +1,12 @@
 import React from 'react';
 
+import SearchByDate from '../search/SearchByDate';
 import SearchByKeyword from '../search/SearchByKeyword';
 import TableSkeleton from '../table/review/TableSkeleton';
 
 import { ReviewInfoStyle, CardStyle } from './ReviewInfoStyle';
 
-const ReviewInfoKeyword = ({ review, loading, error, form, onChange }) => {
+const ReviewInfo = ({ type, review, loading, error, form, onChange }) => {
   let result = null;
 
   if (error) {
@@ -36,11 +37,20 @@ const ReviewInfoKeyword = ({ review, loading, error, form, onChange }) => {
   return (
     <CardStyle big>
       <ReviewInfoStyle>
-        <SearchByKeyword form={form} onChange={onChange} />
+        {type === 'date' ? (
+          <SearchByDate form={form} onChange={onChange} />
+        ) : (
+          <></>
+        )}
+        {type === 'keyword' ? (
+          <SearchByKeyword form={form} onChange={onChange} />
+        ) : (
+          <></>
+        )}
         {result}
       </ReviewInfoStyle>
     </CardStyle>
   );
 };
 
-export default ReviewInfoKeyword;
+export default ReviewInfo;

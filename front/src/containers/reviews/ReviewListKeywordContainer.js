@@ -3,7 +3,7 @@ import { withRouter, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import qs from 'qs';
 import { changeField, listReviewKeyword } from '../../modules/review';
-import ReviewInfoKeyword from '../../components/info/ReviewInfoKeyword';
+import ReviewInfo from '../../components/info/ReviewInfo';
 import Pagination from '@material-ui/lab/Pagination';
 import PaginationItem from '@material-ui/lab/PaginationItem';
 
@@ -46,7 +46,8 @@ const ReviewListKeywordContainer = ({ location }) => {
 
   return (
     <>
-      <ReviewInfoKeyword
+      <ReviewInfo
+        type="keyword"
         form={form}
         onChange={onChange}
         review={review}
