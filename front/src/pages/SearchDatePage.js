@@ -1,20 +1,21 @@
 import React from 'react';
 
 import Footer from '../components/Footer';
+import ReviewlistDateContainer from '../containers/reviews/ReviewListDateContainer';
 import HeaderContainer from '../containers/common/HeaderContainer';
 
 import { MainStyle } from './PageStyle';
 
-const MainPage = () => {
+const SearchDatePage = () => {
   return (
     <>
       <MainStyle>
         <HeaderContainer />
-        여기에 메인 페이지 내용
+        <ReviewlistDateContainer />
         <Footer />
       </MainStyle>
     </>
   );
 };
 
-export default MainPage;
+export default SearchDatePage;

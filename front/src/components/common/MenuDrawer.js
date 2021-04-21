@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   },
 });
 
-const MenuDrawer = () => {
+const MenuDrawer = ({ onClick }) => {
   const classes = useStyles();
   const [state, setState] = React.useState(false);
 

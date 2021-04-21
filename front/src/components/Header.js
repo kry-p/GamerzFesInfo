@@ -44,13 +44,12 @@ const ContentWrapper = styled(Responsive)`
 /*
  * TODO: 상단 버튼 액션 정의
  */
-const Header = () => {
+const Header = ({ onMenuClick }) => {
   return (
     <>
       <Card big header>
         <ContentWrapper>
-          {/* <MenuDrawer /> */}
-          <IconButton>
+          <IconButton onClick={onMenuClick}>
             <RiMenuFill />
           </IconButton>
 

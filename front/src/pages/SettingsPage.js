@@ -5,16 +5,16 @@ import HeaderContainer from '../containers/common/HeaderContainer';
 
 import { MainStyle } from './PageStyle';
 
-const MainPage = () => {
+const SettingsPage = () => {
   return (
     <>
       <MainStyle>
         <HeaderContainer />
-        여기에 메인 페이지 내용
+        여기에 설정 내용
         <Footer />
       </MainStyle>
     </>
   );
 };
 
-export default MainPage;
+export default SettingsPage;

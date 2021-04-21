@@ -1,20 +1,21 @@
 import React from 'react';
 
 import Footer from '../components/Footer';
+import ReviewListKeywordContainer from '../containers/reviews/ReviewListKeywordContainer';
 import HeaderContainer from '../containers/common/HeaderContainer';
 
 import { MainStyle } from './PageStyle';
 
-const MainPage = () => {
+const SearchKeywordPage = () => {
   return (
     <>
       <MainStyle>
         <HeaderContainer />
-        여기에 메인 페이지 내용
+        <ReviewListKeywordContainer />
         <Footer />
       </MainStyle>
     </>
   );
 };
 
-export default MainPage;
+export default SearchKeywordPage;
