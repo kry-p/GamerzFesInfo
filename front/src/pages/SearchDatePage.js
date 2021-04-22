@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Footer from '../components/Footer';
+import Footer from '../components/footer/Footer';
 import ReviewlistDateContainer from '../containers/reviews/ReviewListDateContainer';
 import HeaderContainer from '../containers/common/HeaderContainer';
 

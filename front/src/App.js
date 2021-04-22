@@ -7,9 +7,9 @@ import SearchKeywordPage from './pages/SearchKeywordPage';
 const App = () => {
   return (
     <>
-      <Route component={MainPage} path="/" exact />
+      {/* <Route component={MainPage} path="/" exact /> */}
       <Route component={SearchDatePage} path="/search/date" exact />
-      <Route component={SearchKeywordPage} path="/search/keyword" exact />
+      <Route component={SearchKeywordPage} path="/" exact />
     </>
   );
 };

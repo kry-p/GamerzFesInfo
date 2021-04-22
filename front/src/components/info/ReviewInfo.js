@@ -4,7 +4,7 @@ import SearchByDate from '../search/SearchByDate';
 import SearchByKeyword from '../search/SearchByKeyword';
 import TableSkeleton from '../table/review/TableSkeleton';
 
-import { ReviewInfoStyle, CardStyle } from './ReviewInfoStyle';
+import { ReviewInfoStyle, CardStyle, HintStyle } from './ReviewInfoStyle';
 
 const ReviewInfo = ({ type, review, loading, error, form, onChange }) => {
   let result = null;
@@ -38,15 +38,26 @@ const ReviewInfo = ({ type, review, loading, error, form, onChange }) => {
     <CardStyle big>
       <ReviewInfoStyle>
         {type === 'date' ? (
-          <SearchByDate form={form} onChange={onChange} />
+          <>
+            <SearchByDate form={form} onChange={onChange} />
+            <HintStyle>
+              키워드로 찾고 싶으신가요? <a href="/">키워드로 검색하기</a>
+            </HintStyle>
+          </>
         ) : (
           <></>
         )}
         {type === 'keyword' ? (
-          <SearchByKeyword form={form} onChange={onChange} />
+          <>
+            <SearchByKeyword form={form} onChange={onChange} />
+            <HintStyle>
+              날짜로 찾고 싶으신가요? <a href="/search/date">날짜로 검색하기</a>
+            </HintStyle>
+          </>
         ) : (
           <></>
         )}
+
         {result}
       </ReviewInfoStyle>
     </CardStyle>

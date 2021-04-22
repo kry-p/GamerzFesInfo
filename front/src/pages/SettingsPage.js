@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Footer from '../components/Footer';
+import Footer from '../components/footer/Footer';
 import HeaderContainer from '../containers/common/HeaderContainer';
 
 import { MainStyle } from './PageStyle';

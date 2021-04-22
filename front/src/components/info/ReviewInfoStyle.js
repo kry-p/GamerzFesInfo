@@ -22,3 +22,8 @@ export const ReviewInfoStyle = styled.div`
 export const CardStyle = styled(Card)`
   padding: 1.25rem;
 `;
+
+export const HintStyle = styled.div`
+  padding: 1rem;
+  font-size: 0.75rem;
+`;

@@ -11,12 +11,58 @@ const CardStyle = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0.75rem;
-  /* margin: 0.25rem; */
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   border-radius: 0.75rem;
   box-sizing: border-box;
   box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);
+
+  animation: fadein 2s;
+  -moz-animation: fadein 2s;
+  /* Firefox */
+  -webkit-animation: fadein 2s;
+  /* Safari and Chrome */
+  -o-animation: fadein 2s;
+  /* Opera */
+
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @-moz-keyframes fadein {
+    /* Firefox */
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @-webkit-keyframes fadein {
+    /* Safari and Chrome */
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @-o-keyframes fadein {
+    /* Opera */
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
   ${(props) =>
     props.mainColor &&
@@ -35,7 +81,6 @@ const CardStyle = styled.div`
     css`
       background-color: ${palette.gray[0]};
       margin: 0;
-      margin-bottom: 0.5rem;
       padding-left: 1rem;
       padding-right: 0rem;
       padding-top: 0rem;
