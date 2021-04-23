@@ -1,28 +1,27 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import { ReactComponent as Kakaotalk } from '../../resources/sns/kakaotalk.svg';
-import { ReactComponent as Facebook } from '../../resources/sns/facebook.svg';
-import { ReactComponent as Twitter } from '../../resources/sns/twitter.svg';
-import { ReactComponent as Blog } from '../../resources/sns/blog.svg';
-import { ReactComponent as Link } from '../../resources/sns/link.svg';
 
-import Button from '../common/Button';
 import Card from '../common/Card';
-
 import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
 } from '../common/Accordion';
 
-import palette from '../../lib/styles/palette';
 import {
   FooterStyle,
   SnsStyle,
   TitleStyle,
   DescriptionStyle,
 } from './FooterComponentStyle';
-import KakaoShareButton from './KakaoShareButton';
+
+import {
+  KakaoShareButton,
+  FacebookShareButton,
+  TwitterShareButton,
+  BlogShareButton,
+  LinkShareButton,
+} from './ShareButtons';
 
 // SNS share component
 const Sns = (
@@ -33,21 +32,10 @@ const Sns = (
     <TitleStyle>공유하기</TitleStyle>
     <SnsStyle>
       <KakaoShareButton />
-      {/* <Button sns kakaotalk style={{ gridColumn: '1 / span 1`' }}>
-        <Kakaotalk fill={`${palette.kakaotalk[2]}`} width="16" height="16" />
-      </Button> */}
-      <Button sns facebook style={{ gridColumn: '1 / span 1`' }}>
-        <Facebook fill={`${palette.facebook[2]}`} width="16" height="16" />
-      </Button>
-      <Button sns twitter style={{ gridColumn: '1 / span 1`' }}>
-        <Twitter fill={`${palette.twitter[2]}`} width="16" height="16" />
-      </Button>
-      <Button sns blog style={{ gridColumn: '1 / span 1`' }}>
-        <Blog fill={`${palette.naverblog[2]}`} width="16" height="16" />
-      </Button>
-      <Button sns link style={{ gridColumn: '1 / span 1`' }}>
-        <Link fill={`${palette.link[2]}`} width="16" height="16" />
-      </Button>
+      <FacebookShareButton />
+      <TwitterShareButton />
+      <BlogShareButton />
+      <LinkShareButton />
     </SnsStyle>
   </>
 );
