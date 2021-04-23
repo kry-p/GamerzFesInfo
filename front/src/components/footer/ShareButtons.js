@@ -14,6 +14,15 @@ import { ReactComponent as Twitter } from '../../resources/sns/twitter.svg';
 import { ReactComponent as Blog } from '../../resources/sns/blog.svg';
 import { ReactComponent as Link } from '../../resources/sns/link.svg';
 
+const TextArea = styled.textarea`
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+`;
+
 const urlBuilder = () => {
   return window.location.href;
 };
@@ -118,15 +127,6 @@ export const BlogShareButton = () => {
  * https://ratelmorning.tistory.com/41
  */
 export const LinkShareButton = () => {
-  const TextArea = styled.textarea`
-    position: absolute;
-    width: 0px;
-    height: 0px;
-    bottom: 0;
-    left: 0;
-    opacity: 0;
-  `;
-
   const copyUrlRef = React.useRef();
 
   const onClick = (e) => {
@@ -144,7 +144,7 @@ export const LinkShareButton = () => {
     <Button sns link style={{ gridColumn: '1 / span 1`' }} onClick={onClick}>
       <Link fill={`${palette.link[2]}`} width="16" height="16" />
       <form>
-        <TextArea ref={copyUrlRef} value={window.location.href} />
+        <TextArea ref={copyUrlRef} value={window.location.href} readOnly />
       </form>
     </Button>
   );

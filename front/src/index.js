@@ -24,7 +24,6 @@ const theme = createMuiTheme(
     },
     overrides: {
       MuiTableCell: {
-        align: 'justify',
         root: {
           //This can be referred from Material UI API documentation.
           padding: '6px 6px',
