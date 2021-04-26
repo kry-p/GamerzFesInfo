@@ -1,7 +1,4 @@
-/*
- * TODO: 카카오링크 호스팅 시 링크 수정, 모바일에서 작동하지 않는 버그 수정
- */
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import styled from 'styled-components';
 
@@ -28,53 +25,48 @@ const urlBuilder = () => {
 };
 
 export const KakaoShareButton = () => {
-  useEffect(() => {
-    createKakaoButton();
-  }, []);
-  const createKakaoButton = () => {
-    if (window.Kakao) {
-      const kakao = window.Kakao;
-      if (!kakao.isInitialized()) {
-        kakao.init(process.env.REACT_APP_KAKAO_API);
-      }
-      kakao.Link.createDefaultButton({
-        container: '#kakao-link-btn',
-        objectType: 'feed',
-        content: {
-          title: '게임얼라이브',
-          description: '게임물관리위원회에서 공개하는 실시간 심의정보를 한눈에',
-          imageUrl:
-            'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+  const sendLink = () => {
+    const kakao = window.Kakao;
+    if (!kakao.isInitialized()) {
+      kakao.init(process.env.REACT_APP_KAKAO_API);
+    }
+    kakao.Link.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: '게임얼라이브',
+        description: '게임물관리위원회에서 공개하는 실시간 심의정보를 한눈에',
+        imageUrl:
+          'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+        link: {
+          mobileWebUrl: window.location.href,
+          webUrl: window.location.href,
+        },
+      },
+      buttons: [
+        {
+          title: '웹으로 보기',
           link: {
-            mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'https://developers.kakao.com',
+            mobileWebUrl: window.location.href,
+            webUrl: window.location.href,
           },
         },
-        buttons: [
-          {
-            title: '웹으로 보기',
-            link: {
-              mobileWebUrl: 'https://developers.kakao.com',
-              webUrl: 'https://developers.kakao.com',
-            },
+        {
+          title: '앱으로 보기',
+          link: {
+            mobileWebUrl: window.location.href,
+            webUrl: window.location.href,
           },
-          {
-            title: '앱으로 보기',
-            link: {
-              mobileWebUrl: 'https://developers.kakao.com',
-              webUrl: 'https://developers.kakao.com',
-            },
-          },
-        ],
-      });
-    }
+        },
+      ],
+    });
   };
+
   return (
     <Button
       sns
       kakaotalk
       id="kakao-link-btn"
-      onClick={createKakaoButton}
+      onClick={sendLink}
       style={{ gridColumn: '1 / span 1`' }}
     >
       <Kakaotalk fill={`${palette.kakaotalk[2]}`} width="16" height="16" />
