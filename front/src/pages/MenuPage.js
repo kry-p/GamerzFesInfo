@@ -1,16 +1,17 @@
 import React from 'react';
 
 import Footer from '../components/footer/Footer';
-import HeaderContainer from '../containers/common/HeaderContainer';
+import Header from '../components/Header';
+import Menu from '../components/menu/Menu';
 
 import { MainStyle } from './PageStyle';
 
-const SettingsPage = () => {
+const SettingsPage = ({ history }) => {
   return (
     <>
       <MainStyle>
-        <HeaderContainer />
-        여기에 설정 내용
+        <Header history={history} />
+        <Menu history={history} />
         <Footer />
       </MainStyle>
     </>

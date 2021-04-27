@@ -2,15 +2,15 @@ import React from 'react';
 
 import Footer from '../components/footer/Footer';
 import ReviewListKeywordContainer from '../containers/reviews/ReviewListKeywordContainer';
-import HeaderContainer from '../containers/common/HeaderContainer';
 
 import { MainStyle } from './PageStyle';
+import Header from '../components/Header';
 
-const SearchKeywordPage = () => {
+const SearchKeywordPage = ({ history }) => {
   return (
     <>
       <MainStyle>
-        <HeaderContainer />
+        <Header history={history} />
         <ReviewListKeywordContainer />
         <Footer />
       </MainStyle>
