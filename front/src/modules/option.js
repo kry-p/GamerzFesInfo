@@ -1,16 +1,35 @@
-const TOGGLE = 'option/TOGGLE';
+import { createAction } from 'redux-actions';
 
-export const toggle = () => ({ type: TOGGLE });
+const TOGGLE_DARKMODE = 'option/TOGGLE_DARKMODE';
+const TOGGLE_CANCELLED = 'option/TOGGLE_CANCELLED';
+const TOGGLE_REJECTED = 'option/TOGGLE_REJECTED';
+
+export const toggleDarkmode = createAction(TOGGLE_DARKMODE);
+export const toggleCancelled = createAction(TOGGLE_CANCELLED);
+export const toggleRejected = createAction(TOGGLE_REJECTED);
 
 const initialState = {
-  activate: false,
+  darkmode: false,
+  searchReject: false,
+  searchCancel: false,
 };
 
 function option(state = initialState, action) {
   switch (action.type) {
-    case TOGGLE:
+    case TOGGLE_DARKMODE:
       return {
-        activate: !state.activate,
+        ...state,
+        darkmode: !state.darkmode,
+      };
+    case TOGGLE_CANCELLED:
+      return {
+        ...state,
+        searchCancel: !state.searchCancel,
+      };
+    case TOGGLE_REJECTED:
+      return {
+        ...state,
+        searchReject: !state.searchReject,
       };
     default:
       return state;

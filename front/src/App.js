@@ -10,6 +10,7 @@ const App = () => {
     <>
       {/* <Route component={MainPage} path="/" exact /> */}
       <Route component={SearchDatePage} path="/search/date" exact />
+      <Route component={SearchKeywordPage} path="/search/keyword" exact />
       <Route component={SearchKeywordPage} path="/" exact />
       <Route component={MenuPage} path="/menu" exact />
     </>

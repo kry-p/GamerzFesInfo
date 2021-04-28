@@ -9,6 +9,9 @@ import './index.css';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { koKR } from '@material-ui/core/locale';
 
+import { persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
+
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
@@ -38,16 +41,19 @@ const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(sagaMiddleware)),
 );
+const persistor = persistStore(store);
 
 sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
   <Provider store={store}>
-    <MuiThemeProvider theme={theme}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </MuiThemeProvider>
+    <PersistGate loading={null} persistor={persistor}>
+      <MuiThemeProvider theme={theme}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </MuiThemeProvider>
+    </PersistGate>
   </Provider>,
   document.getElementById('root'),
 );

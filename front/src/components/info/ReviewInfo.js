@@ -41,7 +41,8 @@ const ReviewInfo = ({ type, review, loading, error, form, onChange }) => {
           <>
             <SearchByDate form={form} onChange={onChange} />
             <HintStyle>
-              키워드로 찾고 싶으신가요? <a href="/">키워드로 검색하기</a>
+              키워드로 찾고 싶으신가요?{' '}
+              <a href="/search/keyword">키워드로 검색하기</a>
             </HintStyle>
           </>
         ) : (

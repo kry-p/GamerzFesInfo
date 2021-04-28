@@ -33,7 +33,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Menu = ({ history }) => {
+const Menu = ({
+  history,
+  settings,
+  onToggleDarkmode,
+  onToggleRejected,
+  onToggleCancelled,
+}) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -85,7 +91,12 @@ const Menu = ({ history }) => {
             primary="다크 모드"
             secondary="다크 모드를 설정합니다."
           />
-          <Switch size="small" inputProps={{ 'aria-label': 'dark mode' }} />
+          <Switch
+            checked={settings.darkmode}
+            onChange={onToggleDarkmode}
+            size="small"
+            inputProps={{ 'aria-label': 'dark mode' }}
+          />
         </ListItem>
         <ListItem button onClick={handleClick}>
           <ListItemIcon>
@@ -101,13 +112,25 @@ const Menu = ({ history }) => {
           <List component="div" disablePadding>
             <ListItem button className={classes.nested}>
               <FormControlLabel
-                control={<Checkbox />}
+                control={
+                  <Checkbox
+                    checked={settings.searchReject}
+                    onChange={onToggleRejected}
+                    name="searchReject"
+                  />
+                }
                 label="심의 거부된 게임물을 표시"
               />
             </ListItem>
             <ListItem button className={classes.nested}>
               <FormControlLabel
-                control={<Checkbox />}
+                control={
+                  <Checkbox
+                    checked={settings.searchCancel}
+                    onChange={onToggleCancelled}
+                    name="searchCancel"
+                  />
+                }
                 label="심의 취소된 게임물을 표시"
               />
             </ListItem>
