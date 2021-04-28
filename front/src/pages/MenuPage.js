@@ -2,7 +2,6 @@ import React from 'react';
 
 import Footer from '../components/footer/Footer';
 import Header from '../components/Header';
-import Menu from '../components/menu/Menu';
 import MenuContainer from '../containers/common/MenuContainer';
 
 import { MainStyle } from './PageStyle';
