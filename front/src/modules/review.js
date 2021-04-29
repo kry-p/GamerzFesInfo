@@ -32,14 +32,22 @@ export const changeField = createAction(CHANGE_FIELD, ({ key, value }) => ({
 
 export const listReviewDate = createAction(
   LIST_REVIEW_DATE,
-  ({ startdate, enddate, page }) => ({ startdate, enddate, page }),
+  ({ startdate, enddate, page, cancel, reject }) => ({
+    startdate,
+    enddate,
+    page,
+    cancel,
+    reject,
+  }),
 );
 
 export const listReviewKeyword = createAction(
   LIST_REVIEW_KEYWORD,
-  ({ keyword, page }) => ({
+  ({ keyword, page, cancel, reject }) => ({
     keyword,
     page,
+    cancel,
+    reject,
   }),
 );
 

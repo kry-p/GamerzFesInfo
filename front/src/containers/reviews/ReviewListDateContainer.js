@@ -12,6 +12,7 @@ const ReviewListDateContainer = ({ location }) => {
   const { form } = useSelector(({ review }) => ({
     form: review,
   }));
+  const settings = useSelector((state) => state.option);
 
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -34,11 +35,18 @@ const ReviewListDateContainer = ({ location }) => {
     const { startdate, enddate, page } = qs.parse(location.search, {
       ignoreQueryPrefix: true,
     });
-    dispatch(listReviewDate({ startdate, enddate, page }));
-  }, [dispatch, location.search]);
 
-  const queryHandler = (startdate, enddate, page) => {
-    const query = qs.stringify({ startdate, enddate, page });
+    const { cancel, reject } = {
+      cancel: settings.searchCancel,
+      reject: settings.searchReject,
+    };
+
+    console.log(startdate, enddate, page, cancel, reject);
+    dispatch(listReviewDate({ startdate, enddate, page, cancel, reject }));
+  }, [dispatch, location.search, settings.searchCancel, settings.searchReject]);
+
+  const queryHandler = (startdate, enddate, page, cancel, reject) => {
+    const query = qs.stringify({ startdate, enddate, page, cancel, reject });
     return query;
   };
 
@@ -60,7 +68,13 @@ const ReviewListDateContainer = ({ location }) => {
           renderItem={(item) => (
             <PaginationItem
               component={Link}
-              to={`?${queryHandler(form.startdate, form.enddate, item.page)}`}
+              to={`?${queryHandler(
+                form.startdate,
+                form.enddate,
+                item.page,
+                settings.searchCancel,
+                settings.searchReject,
+              )}`}
               {...item}
             />
           )}

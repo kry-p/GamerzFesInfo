@@ -12,6 +12,7 @@ const ReviewListKeywordContainer = ({ location }) => {
   const { form } = useSelector(({ review }) => ({
     form: review,
   }));
+  const settings = useSelector((state) => state.option);
 
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -34,12 +35,18 @@ const ReviewListKeywordContainer = ({ location }) => {
     const { keyword, page } = qs.parse(location.search, {
       ignoreQueryPrefix: true,
     });
-    dispatch(listReviewKeyword({ keyword, page }));
-  }, [dispatch, location.search]);
 
-  const queryHandler = (keyword, page) => {
+    const { cancel, reject } = {
+      cancel: settings.searchCancel,
+      reject: settings.searchReject,
+    };
+
+    dispatch(listReviewKeyword({ keyword, page, cancel, reject }));
+  }, [dispatch, location.search, settings.searchCancel, settings.searchReject]);
+
+  const queryHandler = (keyword, page, cancel, reject) => {
     const word = keyword === 'undefined' ? '' : keyword;
-    const query = qs.stringify({ word, page });
+    const query = qs.stringify({ word, page, cancel, reject });
 
     return query;
   };
@@ -62,7 +69,12 @@ const ReviewListKeywordContainer = ({ location }) => {
           renderItem={(item) => (
             <PaginationItem
               component={Link}
-              to={`?${queryHandler(form.keyword, item.page)}`}
+              to={`?${queryHandler(
+                form.keyword,
+                item.page,
+                settings.searchCancel,
+                settings.searchReject,
+              )}`}
               {...item}
             />
           )}
