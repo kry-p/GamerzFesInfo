@@ -62,7 +62,11 @@ const Header = ({ history }) => {
             <Logo colorize>alive</Logo>
           </TextWrappper>
 
-          <IconButton>
+          <IconButton
+            onClick={() => {
+              alert('구현 예정인 기능입니다.');
+            }}
+          >
             <RiNotification4Line />
           </IconButton>
         </ContentWrapper>

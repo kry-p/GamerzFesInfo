@@ -89,7 +89,7 @@ const Menu = ({
           </ListItemIcon>
           <ListItemText
             primary="다크 모드"
-            secondary="다크 모드를 설정합니다."
+            secondary="다크 모드를 설정합니다. (구현 예정)"
           />
           <Switch
             checked={settings.darkmode}

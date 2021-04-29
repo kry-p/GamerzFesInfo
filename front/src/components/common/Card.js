@@ -17,12 +17,12 @@ const CardStyle = styled.div`
   box-sizing: border-box;
   box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);
 
-  animation: fadein 2s;
-  -moz-animation: fadein 2s;
+  animation: fadein 1s;
+  -moz-animation: fadein 1s;
   /* Firefox */
-  -webkit-animation: fadein 2s;
+  -webkit-animation: fadein 1s;
   /* Safari and Chrome */
-  -o-animation: fadein 2s;
+  -o-animation: fadein 1s;
   /* Opera */
 
   @keyframes fadein {
