@@ -220,13 +220,4 @@ async function getData(startdate, enddate) {
   } else return null;
 }
 
-// 활용예 (Promise 형태로 받아야 함)
-// (async () => {
-//   const res = await getData(
-//     new Date(2020, 2 - 1, 3),
-//     new Date(2020, 2 - 1, 15),
-//   );
-//   console.log(res);
-// })();
-
 export default getData;

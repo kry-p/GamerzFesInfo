@@ -40,8 +40,6 @@ const ReviewListDateContainer = ({ location }) => {
       cancel: settings.searchCancel,
       reject: settings.searchReject,
     };
-
-    console.log(startdate, enddate, page, cancel, reject);
     dispatch(listReviewDate({ startdate, enddate, page, cancel, reject }));
   }, [dispatch, location.search, settings.searchCancel, settings.searchReject]);
 
